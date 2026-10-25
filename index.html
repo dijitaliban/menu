@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- GÜVENLİK KALKANI (CSP): Dışarıdan zararlı script ve virüs çalıştırılmasını engeller -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none';">
+    <title>Adıyaman Çiğköfte | Hızlı Sipariş</title>
+    <style>
+        :root {
+            --primary: #d32f2f;
+            --primary-dark: #9a0007;
+            --green: #25D366;
+            --bg: #f5f5f7;
+            --card: #ffffff;
+            --text: #1d1d1f;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none; /* Metin kopyalamayı zorlaştırır */
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding-bottom: 100px;
+        }
+        /* Üst Banner */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 22px 16px;
+            text-align: center;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.25);
+        }
+        header h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+        header p {
+            font-size: 13px;
+            opacity: 0.95;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .category-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin: 16px 0 10px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        /* Ürün Kartları */
+        .item-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .item-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-right: 12px;
+            background: #eee;
+            flex-shrink: 0;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 3px;
+        }
+        .item-desc {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .item-price {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 15px;
+        }
+        /* Artı / Eksi Butonları */
+        .qty-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f2f2f7;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+        .qty-btn {
+            background: white;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .qty-btn:active {
+            transform: scale(0.92);
+        }
+        .qty-val {
+            font-weight: 700;
+            min-width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+        /* Alt Sepet Barı */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            display: none;
+            justify-content: center;
+            z-index: 100;
+        }
+        .bottom-bar-inner {
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            padding: 14px 20px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        /* Sipariş Tamamlama Ekranı (Modal) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 200;
+        }
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            padding: 20px 16px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .close-btn {
+            background: #f2f2f7;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #444;
+        }
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1.5px solid #ddd;
+            border-radius: 12px;
+            font-size: 14px;
+            user-select: text;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        /* IBAN Kopyalama Kutusu */
+        .iban-box {
+            background: #fff8e1;
+            border: 1.5px dashed #ffb300;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            display: none;
+        }
+        .iban-box p {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        .iban-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .copy-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .wp-btn {
+            width: 100%;
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+<header>
+    <h1>🌶️ Adıyaman Çiğköfte</h1>
+    <p>🚀 %0 Komisyon • WhatsApp Hızlı Sipariş</p>
+</header>
+
+<div class="container" id="menu-container"></div>
+
+<!-- Alt Sepet Çubuğu -->
+<div class="bottom-bar" id="bottom-bar" onclick="openCheckout()">
+    <div class="bottom-bar-inner">
+        <span id="cart-count">0 Ürün</span>
+        <span>Sepeti Onayla ➔ <strong id="cart-total">0 TL</strong></span>
+    </div>
+</div>
+
+<!-- Sipariş Detay Modalı -->
+<div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Sipariş Bilgileri</h3>
+            <button class="close-btn" onclick="closeCheckout()">✕</button>
+        </div>
+
+        <div class="form-group">
+            <label>Adınız Soyadınız *</label>
+            <input type="text" id="cust-name" class="form-control" maxlength="50" placeholder="Örn: Ahmet Yılmaz">
+        </div>
+
+        <div class="form-group">
+            <label>Açık Adresiniz ve Tarif *</label>
+            <textarea id="cust-address" class="form-control" rows="2" maxlength="200" placeholder="Mahalle, Sokak, Bina No, Daire..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Ödeme Yöntemi</label>
+            <select id="cust-payment" class="form-control" onchange="toggleIban()">
+                <option value="Kapıda Nakit">💵 Kapıda Nakit</option>
+                <option value="Kapıda Kredi Kartı">💳 Kapıda Kredi Kartı (POS)</option>
+                <option value="IBAN / Havale">🏦 IBAN / Fast ile Ödeme</option>
+            </select>
+        </div>
+
+        <div class="iban-box" id="iban-box">
+            <p><strong>Alıcı:</strong> Adıyaman Çiğköfte Esnaf</p>
+            <div class="iban-row">
+                <span id="iban-text">TR12 0006 2000 0000 1234 5678 90</span>
+                <button class="copy-btn" onclick="copyIban()" id="copy-btn">Kopyala</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Sipariş Notunuz (İsteğe Bağlı)</label>
+            <input type="text" id="cust-note" class="form-control" maxlength="100" placeholder="Örn: Acısı bol olsun, nar ekşisi fazla olsun">
+        </div>
+
+        <button class="wp-btn" onclick="sendWhatsAppOrder()">
+            📲 WhatsApp ile Siparişi Gönder
+        </button>
+    </div>
+</div>
+
+<script>
+    // Esnaf Bilgileri (Sabitlenmiş ve Korunmuş)
+    const CONFIG = Object.freeze({
+        PHONE: "905362441180",
+        IBAN: "TR120006200000001234567890"
+    });
+
+    // Menü Ürünleri
+    const MENU = Object.freeze([
+        {
+            category: "🌯 Dürümler & Porsiyonlar",
+            items: [
+                { id: 1, name: "Mega Çiğköfte Dürüm", desc: "Çift lavaş, bol yeşillik, limon, nar ekşisi", price: 95, img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&q=80" },
+                { id: 2, name: "Normal Çiğköfte Dürüm", desc: "Tek lavaş, yeşillik, turşu, nar ekşisi", price: 75, img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=200&q=80" },
+                { id: 3, name: "Doritoslu Ultra Dürüm", desc: "Mega dürüm içi çıtır Doritos parçacıklı", price: 115, img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=200&q=80" }
+            ]
+        },
+        {
+            category: "📦 Kiloluk Aile Paketleri",
+            items: [
+                { id: 4, name: "Yarım Kilo Çiğköfte (500gr)", desc: "10 lavaş, tam göbek marul, limon, soslar", price: 240, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=80" },
+                { id: 5, name: "1 Kg Aile Paketi (1000gr)", desc: "20 lavaş, 2 göbek marul, bol sos ve yeşillik", price: 440, img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=80" }
+            ]
+        },
+        {
+            category: "🥤 İçecekler",
+            items: [
+                { id: 6, name: "Büyük Boy Yayık Ayran", desc: "Bol köpüklü 300ml", price: 35, img: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=200&q=80" },
+                { id: 7, name: "Acılı Şalgam Suyu", desc: "330ml soğuk şişe", price: 35, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=200&q=80" }
+            ]
+        }
+    ]);
+
+    const cart = {};
+
+    // GÜVENLİK FONKSİYONU: Kullanıcının yazdığı metinlerdeki zararlı kodları (<script> vb.) temizler
+    function sanitizeInput(str) {
+        return String(str).replace(/[<>'"`;(){}]/g, "").trim();
+    }
+
+    function renderMenu() {
+        const container = document.getElementById("menu-container");
+        container.innerHTML = "";
+        MENU.forEach(group => {
+            const catTitle = document.createElement("div");
+            catTitle.className = "category-title";
+            catTitle.textContent = group.category;
+            container.appendChild(catTitle);
+
+            group.items.forEach(item => {
+                const qty = cart[item.id] || 0;
+                const card = document.createElement("div");
+                card.className = "item-card";
+                card.innerHTML = `
+                    <img src="${item.img}" class="item-img" alt="${item.name}">
+                    <div class="item-info">
+                        <div class="item-title">${item.name}</div>
+                        <div class="item-desc">${item.desc}</div>
+                        <div class="item-price">${item.price} TL</div>
+                    </div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">−</button>
+                        <span class="qty-val" id="qty-${item.id}">${qty}</span>
+                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        });
+    }
+
+    function updateQty(id, delta) {
+        const current = cart[id] || 0;
+        const next = Math.max(0, Math.min(50, current + delta));
+        if (next === 0) {
+            delete cart[id];
+        } else {
+            cart[id] = next;
+        }
+        document.getElementById(`qty-${id}`).textContent = next;
+        updateBottomBar();
+    }
+
+    function updateBottomBar() {
+        let totalItems = 0;
+        let totalPrice = 0;
+        MENU.forEach(g => g.items.forEach(item => {
+            if (cart[item.id]) {
+                totalItems += cart[item.id];
+                totalPrice += cart[item.id] * item.price;
+            }
+        }));
+
+        const bar = document.getElementById("bottom-bar");
+        if (totalItems > 0) {
+            bar.style.display = "flex";
+            document.getElementById("cart-count").textContent = `${totalItems} Ürün`;
+            document.getElementById("cart-total").textContent = `${totalPrice} TL`;
+        } else {
+            bar.style.display = "none";
+            closeCheckout();
+        }
+    }
+
+    function openCheckout() {
+        document.getElementById("checkout-modal").style.display = "flex";
+    }
+
+    function closeCheckout() {
+        document.getElementById("checkout-modal").style.display = "none";
+    }
+
+    function toggleIban() {
+        const val = document.getElementById("cust-payment").value;
+        document.getElementById("iban-box").style.display = val.includes("IBAN") ? "block" : "none";
+    }
+
+    function copyIban() {
+        navigator.clipboard.writeText(CONFIG.IBAN);
+        const btn = document.getElementById("copy-btn");
+        btn.textContent = "Kopyalandı ✓";
+        btn.style.background = "#2e7d32";
+        setTimeout(() => {
+            btn.textContent = "Kopyala";
+            btn.style.background = "#d32f2f";
+        }, 2000);
+    }
+
+    function sendWhatsAppOrder() {
+        const name = sanitizeInput(document.getElementById("cust-name").value);
+        const address = sanitizeInput(document.getElementById("cust-address").value);
+        const payment = sanitizeInput(document.getElementById("cust-payment").value);
+        const note = sanitizeInput(document.getElementById("cust-note").value);
+
+        if (!name || !address) {
+            alert("Lütfen adınızı ve açık adresinizi yazın.");
+            return;
+        }
+
+        let orderLines = [];
+        let total = 0;
+        MENU.forEach(g => g.items.forEach(item => {
+            if (cart[item.id]) {
+                const sub = cart[item.id] * item.price;
+                total += sub;
+                orderLines.push(`▪️ ${cart[item.id]}x ${item.name} (${sub} TL)`);
+            }
+        }));
+
+        const message = [
+            "🔔 *YENİ SİPARİŞ GELDİ!*",
+            "",
+            "*Sipariş Özeti:*",
+            ...orderLines,
+            "",
+            `💰 *Toplam Tutar:* ${total} TL`,
+            `💳 *Ödeme:* ${payment}`,
+            `👤 *Müşteri:* ${name}`,
+            `📍 *Adres:* ${address}`,
+            note ? `📝 *Not:* ${note}` : ""
+        ].filter(Boolean).join("\n");
+
+        const url = `https://wa.me/${CONFIG.PHONE}?text=${encodeURIComponent(message)}`;
+        window.open(url, "_blank", "noopener,noreferrer");
+    }
+
+    // Sağ tık ve F12 inceleme kısayollarını engelleme
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")) {
+            e.preventDefault();
+        }
+    });
+
+    renderMenu();
+</script>
+</body>
+</html>
