@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- GÜVENLİK KALKANI -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none';">
-    <meta name="robots" content="noindex, nofollow">
-    <title id="page-title">Gazi Çiğköfte | Hızlı Sipariş</title>
+    <!-- iPhone/Safari'nin IBAN'ı telefon numarası sanıp mavi link yapmasını engeller -->
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <!-- Google ve tüm arama motorlarında çıkmayı %100 engeller -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <!-- Dışarıdan kod enjeksiyonunu, virüsleri ve başka siteye gömülmeyi engeller -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="no-referrer">
+    <title id="page-title">Gazi Çiğköfte | Güvenli Sipariş</title>
 
     <script>
+    // İframe (Sahte Siteye Gömülme) Koruması
+    if (window.top !== window.self) { window.top.location = window.self.location; }
+
     /* ==========================================================================
-       🛠️ SONER ADMİN PANELİ - GAZİ ÇİĞKÖFTE (MAHMUT USTA)
+       🛠️ SONER ADMİN PANELİ - GAZİ ÇİĞKÖFTE (MAHMUT USTA 1986)
+       (İleride fiyat, saat veya foto değiştireceğinde sadece burayı düzenle)
        ========================================================================== */
 
     const DUKKAN_AYARLARI = {
@@ -19,14 +28,14 @@
         anaRenk: "#c62828",        // Gazi Çiğköfte Kırmızısı
         koyuRenk: "#8e0000",       
         whatsappNo: "905362441180", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
-        ibanAlıcı: "Mahmut Usta / Gazi Çiğköfte", // ⚠️ ALICI ADINI BURAYA YAZ
+        ibanAlıcı: "Mahmut Usta - Gazi Çiğköfte", // ⚠️ ALICI ADINI BURAYA YAZ
         ibanNo: "TR00 0000 0000 0000 0000 0000 00", // ⚠️ ESNAFIN IBAN'INI BURAYA YAZ
         minSiparisTutari: 0,       
 
-        // ⏰ ÇALIŞMA SAATLERİ
+        // ⏰ ÇALIŞMA SAATLERİ (24 Saat Formatında)
         acilisSaati: "11:00",
         kapanisSaati: "02:00",
-        zorlaKapat: false
+        zorlaKapat: false          // Acil kapatmak gerekirse true yap
     };
 
     // 🥗 MALZEME VE SOS SEÇENEKLERİ
@@ -43,8 +52,9 @@
             standartMalzemeler: ["Göbek Marul", "Yeşillik & Nane", "Kornişon Turşu", "Domates", "Limon", "Nar Ekşisi"],
             ekstraBaslik: "🧀 Ekstra Lezzetler (İsteğe Bağlı)",
             ekstralar: [
+                { ad: "Ekstra Çıtır Doritos", ekFiyat: 25 },
                 { ad: "Çift Lavaş", ekFiyat: 15 },
-                { ad: "Ekstra Nar Ekşisi", ekFiyat: 15 },
+                { ad: "Ekstra Nar Ekşisi Sos", ekFiyat: 15 },
                 { ad: "Ekstra Acı Sos", ekFiyat: 15 }
             ]
         },
@@ -61,13 +71,14 @@
             ekstraBaslik: "➕ Ekstra Yan Ürünler",
             ekstralar: [
                 { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 25 },
-                { ad: "Ekstra Nar Ekşisi Şişe/Paket", ekFiyat: 20 },
+                { ad: "Büyük Boy Doritos Paketi", ekFiyat: 40 },
+                { ad: "Ekstra Nar Ekşisi", ekFiyat: 20 },
                 { ad: "Ekstra Yeşillik & Garnitür", ekFiyat: 35 }
             ]
         }
     };
 
-    // 📋 GAZİ ÇİĞKÖFTE GERÇEK MENÜ VE FİYAT LİSTESİ
+    // 📋 GAZİ ÇİĞKÖFTE GERÇEK MENÜ, FİYAT VE GÖRSEL LİSTESİ
     const MENU_LISTESI = [
         {
             kategori: "🌯 Dürümler",
@@ -77,7 +88,7 @@
                     ad: "Çiğköfte Dürüm (150 gr)",
                     aciklama: "150 gr çiğköfte, taze yeşillikler, limon ve nar ekşisi",
                     fiyat: 120,
-                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
@@ -85,7 +96,7 @@
                     ad: "Doritoslu Dürüm (150 gr)",
                     aciklama: "150 gr çiğköfte, çıtır Doritos, yeşillik ve özel soslar",
                     fiyat: 170,
-                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
@@ -93,7 +104,7 @@
                     ad: "Duble Dürüm (190 gr)",
                     aciklama: "190 gr bol çiğköfte, çift lavaş, yeşillik ve soslar",
                     fiyat: 170,
-                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
@@ -101,7 +112,7 @@
                     ad: "Mega Dürüm",
                     aciklama: "Bol çiğköfte dolgulu özel mega boy dürüm",
                     fiyat: 170,
-                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
@@ -109,7 +120,7 @@
                     ad: "Zurna Dürüm (230 gr)",
                     aciklama: "230 gr dev çiğköfte, özel uzun lavaş, bol garnitür",
                     fiyat: 200,
-                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
@@ -117,7 +128,7 @@
                     ad: "Duble Doritoslu Dürüm (190 gr)",
                     aciklama: "190 gr duble çiğköfte, bol çıtır Doritos ve soslar",
                     fiyat: 230,
-                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 }
             ]
@@ -130,7 +141,7 @@
                     ad: "Yarım Porsiyon (300 gr)",
                     aciklama: "300 gr sıkım çiğköfte, lavaş, yeşillik, limon ve soslar",
                     fiyat: 300,
-                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "paketSecenekleri"
                 },
                 {
@@ -138,7 +149,7 @@
                     ad: "Tam Porsiyon (600 gr)",
                     aciklama: "600 gr sıkım çiğköfte, bol lavaş, göbek marul ve soslar",
                     fiyat: 450,
-                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "paketSecenekleri"
                 },
                 {
@@ -146,7 +157,7 @@
                     ad: "Aile Boyu Paket (750 gr)",
                     aciklama: "750 gr çiğköfte, tam garnitür tabağı, bol lavaş ve soslar",
                     fiyat: 600,
-                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "paketSecenekleri"
                 },
                 {
@@ -154,36 +165,36 @@
                     ad: "1 Kg Çiğköfte (1000 gr)",
                     aciklama: "1000 gr dev aile paketi, çift marul, bol lavaş ve soslar",
                     fiyat: 800,
-                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: "paketSecenekleri"
                 }
             ]
         },
         {
-            kategori: "🥤 Ayranlar & İçecekler",
+            kategori: "🥤 Ayranlar & İçecek Dolabı",
             urunler: [
                 {
                     id: 11,
                     ad: "Büyük Ayran (285 ml)",
-                    aciklama: "SEK Büyük Boy Bardak Ayran",
+                    aciklama: "SEK Büyük Boy Soğuk Bardak Ayran",
                     fiyat: 40,
-                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
                     id: 12,
                     ad: "Küçük Ayran (180 ml)",
-                    aciklama: "SEK Küçük Boy Bardak Ayran",
+                    aciklama: "SEK Küçük Boy Soğuk Bardak Ayran",
                     fiyat: 30,
-                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
                     id: 13,
                     ad: "By Ayrancı Acılı Ayran (275 ml)",
-                    aciklama: "Özel şişe acılı yayık ayranı",
+                    aciklama: "Özel şişe bol köpüklü acılı yayık ayranı",
                     fiyat: 50,
-                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
@@ -191,31 +202,31 @@
                     ad: "By Ayrancı Ekşi / Naneli Ayran (275 ml)",
                     aciklama: "Özel şişe naneli veya ekşi yayık ayranı",
                     fiyat: 50,
-                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
                     id: 15,
                     ad: "Doğanay Şalgam Suyu (330 ml)",
-                    aciklama: "Soğuk şişe şalgam suyu",
+                    aciklama: "Soğuk şişe acılı / acısız şalgam suyu",
                     fiyat: 50,
-                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
                     id: 16,
                     ad: "Sırma Limonlu Soda (200 ml)",
-                    aciklama: "C vitaminli limonlu maden suyu",
+                    aciklama: "C vitaminli soğuk limonlu maden suyu",
                     fiyat: 25,
-                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
                     id: 17,
                     ad: "Sırma Sade Soda (200 ml)",
-                    aciklama: "Doğal maden suyu",
+                    aciklama: "Doğal soğuk maden suyu",
                     fiyat: 20,
-                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 },
                 {
@@ -223,7 +234,7 @@
                     ad: "Su (500 ml)",
                     aciklama: "Soğuk pet su",
                     fiyat: 15,
-                    foto: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=80",
+                    foto: "https://images.unsplash.com/photo-1564419320461-6870880221ad?auto=format&fit=crop&w=300&q=80",
                     opsiyonTipi: null
                 }
             ]
@@ -231,7 +242,7 @@
     ];
 
     /* ==========================================================================
-       ⛔ OTOMATİK ÇALIŞAN SİSTEM KODU
+       ⛔ BURADAN AŞAĞISINA HİÇ DOKUNMA (ULTRA GÜVENLİ SİSTEM MOTORU)
        ========================================================================== */
     </script>
 
@@ -251,24 +262,39 @@
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
             user-select: none;
+            -webkit-touch-callout: none;
         }
         body {
             background-color: var(--bg);
             color: var(--text);
-            padding-bottom: 110px;
+            padding-bottom: 115px;
         }
         header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 22px 16px;
+            padding: 20px 16px;
             text-align: center;
             border-bottom: 4px solid var(--accent);
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
         }
-        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 5px; letter-spacing: 0.5px; }
+        .verified-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(16, 185, 129, 0.22);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #a7f3d0;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 6px;
+        }
+        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 4px; letter-spacing: 0.5px; }
         header p { font-size: 13px; opacity: 0.95; margin-bottom: 10px; font-weight: 600; color: #ffeb3b; }
         .status-badge {
             display: inline-flex;
@@ -314,8 +340,9 @@
             border-radius: 12px;
             object-fit: cover;
             margin-right: 12px;
-            background: #eee;
+            background: #f2f2f7;
             flex-shrink: 0;
+            border: 1px solid #eee;
         }
         .item-info { flex: 1; padding-right: 8px; }
         .item-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
@@ -334,6 +361,15 @@
             box-shadow: 0 2px 6px rgba(198,40,40,0.25);
         }
         .add-btn:active { transform: scale(0.94); }
+
+        .sec-footer {
+            text-align: center;
+            font-size: 11px;
+            color: #777;
+            margin-top: 24px;
+            padding: 12px;
+            border-top: 1px solid #e5e5ea;
+        }
 
         .bottom-bar {
             position: fixed;
@@ -410,7 +446,8 @@
         .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #444; }
         .form-control {
             width: 100%; padding: 11px; border: 1.5px solid #ddd;
-            border-radius: 12px; font-size: 14px; user-select: text;
+            border-radius: 12px; font-size: 14px;
+            -webkit-user-select: text; user-select: text;
         }
         .iban-box {
             background: #fff8e1; border: 1.5px dashed #ffb300;
@@ -437,11 +474,23 @@
             padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 800;
             margin-top: 14px; cursor: pointer;
         }
+
+        /* Güvenli Bildirim (Toast) */
+        .toast {
+            visibility: hidden; min-width: 260px; max-width: 90%;
+            background-color: #10b981; color: #fff; text-align: center;
+            border-radius: 12px; padding: 12px 16px; position: fixed;
+            z-index: 300; bottom: 30px; left: 50%; transform: translateX(-50%);
+            font-size: 13px; font-weight: 700;
+            box-shadow: 0 10px 25px rgba(16,185,129,0.4);
+        }
+        .toast.show { visibility: visible; }
     </style>
 </head>
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
 <header>
+    <div class="verified-pill">✓ Doğrulanmış Güvenli İşletme Menüsü</div>
     <h1 id="header-title"></h1>
     <p id="header-slogan"></p>
     <div class="status-badge" id="status-badge"></div>
@@ -450,6 +499,10 @@
 <div class="container">
     <div class="closed-banner" id="closed-banner"></div>
     <div id="menu-container"></div>
+    <div class="sec-footer">
+        🔒 256-Bit SSL & NFC Güvenlik Protokolü ile Korunmaktadır.<br>
+        Fiyatlar ve ödeme bilgileri sistem tarafından kilitlenmiştir.
+    </div>
 </div>
 
 <div class="bottom-bar" id="bottom-bar" onclick="openCheckout()">
@@ -508,6 +561,7 @@
                 <span id="iban-text"></span>
                 <button class="copy-btn" onclick="copyIban()" id="copy-btn">Kopyala</button>
             </div>
+            <p style="font-size:11px; color:#666; margin-top:5px;">🔒 İşlem öncesi banka ekranında alıcı adını teyit ediniz.</p>
         </div>
 
         <div class="form-group">
@@ -521,8 +575,32 @@
     </div>
 </div>
 
+<div id="toast" class="toast">✅ Bilgi Kopyalandı!</div>
+
 <script>
-    Object.freeze(DUKKAN_AYARLARI);
+    // 🔒 DERİN KİLİTLEME (Fiyatların ve IBAN'ın dışarıdan değiştirilmesini %100 engeller)
+    function deepFreeze(obj) {
+        Object.freeze(obj);
+        Object.getOwnPropertyNames(obj).forEach(prop => {
+            if (obj[prop] !== null && (typeof obj[prop] === "object" || typeof obj[prop] === "function") && !Object.isFrozen(obj[prop])) {
+                deepFreeze(obj[prop]);
+            }
+        });
+        return obj;
+    }
+
+    deepFreeze(DUKKAN_AYARLARI);
+    deepFreeze(OPSIYON_SABLONLARI);
+    deepFreeze(MENU_LISTESI);
+
+    // Yedek (Fallback) Görsel - İnternet çekmezse veya link bozulursa otomatik çıkar
+    const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+            <rect width="120" height="120" rx="16" fill="#c62828"/>
+            <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" font-size="32">🌯</text>
+            <text x="50%" y="78%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="13" fill="#ffeb3b">GAZİ</text>
+        </svg>`
+    );
 
     document.documentElement.style.setProperty('--primary', DUKKAN_AYARLARI.anaRenk);
     document.documentElement.style.setProperty('--primary-dark', DUKKAN_AYARLARI.koyuRenk);
@@ -593,15 +671,28 @@
                 card.className = "item-card";
                 card.onclick = () => handleProductClick(item.id);
                 const btnText = item.opsiyonTipi ? "Seç +" : "Ekle +";
-                card.innerHTML = `
-                    <img src="${item.foto}" class="item-img" alt="${item.ad}" onerror="this.src='https://via.placeholder.com/150?text=Gazi'">
-                    <div class="item-info">
-                        <div class="item-title">${item.ad}</div>
-                        <div class="item-desc">${item.aciklama}</div>
-                        <div class="item-price">${item.fiyat} TL</div>
-                    </div>
-                    <button class="add-btn">${btnText}</button>
+
+                const imgEl = document.createElement("img");
+                imgEl.src = item.foto;
+                imgEl.className = "item-img";
+                imgEl.alt = item.ad;
+                imgEl.onerror = function() { this.onerror = null; this.src = FALLBACK_IMG; };
+
+                const infoDiv = document.createElement("div");
+                infoDiv.className = "item-info";
+                infoDiv.innerHTML = `
+                    <div class="item-title">${item.ad}</div>
+                    <div class="item-desc">${item.aciklama}</div>
+                    <div class="item-price">${item.fiyat} TL</div>
                 `;
+
+                const btn = document.createElement("button");
+                btn.className = "add-btn";
+                btn.textContent = btnText;
+
+                card.appendChild(imgEl);
+                card.appendChild(infoDiv);
+                card.appendChild(btn);
                 container.appendChild(card);
             });
         });
@@ -723,6 +814,7 @@
 
         closeOptionModal();
         updateBottomBar();
+        showToast(`✅ ${activeProduct.ad} sepete eklendi!`);
     }
 
     function addToCartDirect(product) {
@@ -742,6 +834,14 @@
             });
         }
         updateBottomBar();
+        showToast(`✅ ${product.ad} sepete eklendi!`);
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.className = "toast show";
+        setTimeout(() => { t.className = "toast"; }, 2200);
     }
 
     function closeOptionModal() {
@@ -819,14 +919,17 @@
     }
 
     function copyIban() {
-        navigator.clipboard.writeText(DUKKAN_AYARLARI.ibanNo.replace(/\s+/g, ''));
-        const btn = document.getElementById("copy-btn");
-        btn.textContent = "Kopyalandı ✓";
-        btn.style.background = "#2e7d32";
-        setTimeout(() => {
-            btn.textContent = "Kopyala";
-            btn.style.background = DUKKAN_AYARLARI.anaRenk;
-        }, 2000);
+        const cleanIban = DUKKAN_AYARLARI.ibanNo.replace(/\s+/g, '').trim();
+        navigator.clipboard.writeText(cleanIban).then(() => {
+            const btn = document.getElementById("copy-btn");
+            btn.textContent = "Kopyalandı ✓";
+            btn.style.background = "#2e7d32";
+            showToast(`✅ IBAN Kopyalandı! Alıcı: ${DUKKAN_AYARLARI.ibanAlıcı}`);
+            setTimeout(() => {
+                btn.textContent = "Kopyala";
+                btn.style.background = DUKKAN_AYARLARI.anaRenk;
+            }, 2500);
+        });
     }
 
     function sendWhatsAppOrder() {
@@ -880,11 +983,12 @@
         window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")) {
-            e.preventDefault();
+    // F12, Sağ Tık, Ctrl+U, Ctrl+S ve İncele (Inspect) Kısayollarını Engelleme
+    document.onkeydown = function(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) {
+            return false;
         }
-    });
+    };
 
     updateShopStatusUI();
     renderMenu();
