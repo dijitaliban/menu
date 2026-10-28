@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- GÜVENLİK KALKANI: Dışarıdan virüs/script enjeksiyonunu engeller -->
+    <!-- GÜVENLİK KALKANI -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none';">
-    <title id="page-title">Sipariş Menüsü</title>
+    <meta name="robots" content="noindex, nofollow">
+    <title id="page-title">Gazi Çiğköfte | Hızlı Sipariş</title>
 
     <script>
     /* ==========================================================================
-       🛠️ SONER ADMİN PANELİ - SADECE BURADAKİ BİLGİLERİ DEĞİŞTİRECEKSİN
+       🛠️ SONER ADMİN PANELİ - GAZİ ÇİĞKÖFTE (MAHMUT USTA)
        ========================================================================== */
 
     const DUKKAN_AYARLARI = {
-        dukkanAdi: "🌶️ Gazi Çiğköfte",
-        slogan: "🚀 %0 Komisyon • WhatsApp Hızlı Sipariş",
-        anaRenk: "#d32f2f",        // Kırmızı:#d32f2f | Turuncu:#ef6c00 | Yeşil:#2e7d32 | Siyah:#1d1d1f
-        koyuRenk: "#9a0007",       // Üst bar geçiş rengi
-        whatsappNo: "905362441180", // Başında 90 olacak şekilde esnafın numarası
-        ibanAlıcı: "Gazi Çiğköfte Esnaf",
-        ibanNo: "TR12 0006 2000 0000 1234 5678 90",
-        minSiparisTutari: 150,       // Örn: 150 yazarsan 150 TL altı sipariş verdirmez
+        dukkanAdi: "👑 GAZİ ÇİĞKÖFTE",
+        slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş",
+        anaRenk: "#c62828",        // Gazi Çiğköfte Kırmızısı
+        koyuRenk: "#8e0000",       
+        whatsappNo: "905362441180", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
+        ibanAlıcı: "Mahmut Usta / Gazi Çiğköfte", // ⚠️ ALICI ADINI BURAYA YAZ
+        ibanNo: "TR00 0000 0000 0000 0000 0000 00", // ⚠️ ESNAFIN IBAN'INI BURAYA YAZ
+        minSiparisTutari: 0,       
 
-        // ⏰ ÇALIŞMA SAATLERİ AYARI (24 Saat Formatında)
+        // ⏰ ÇALIŞMA SAATLERİ
         acilisSaati: "11:00",
         kapanisSaati: "02:00",
-        zorlaKapat: false          // Acil kapatmak gerekirse true yap
+        zorlaKapat: false
     };
 
-    // 🥗 HAZIR MALZEME VE EKSTRA GRUPLARI (İstediğin ürüne tek kelimeyle bağlayabilirsin)
+    // 🥗 MALZEME VE SOS SEÇENEKLERİ
     const OPSIYON_SABLONLARI = {
         durumSecenekleri: {
             tekSecimBaslik: "🌶️ Acı & Sos Tercihi (Zorunlu)",
@@ -39,103 +40,190 @@
                 { ad: "Bol Acılı 🔥", ekFiyat: 0 }
             ],
             malzemeBaslik: "🥬 İçindekiler (İstemediğinizi Çıkarın)",
-            standartMalzemeler: ["Göbek Marul", "Nane & Yeşillik", "Kornişon Turşu", "Limon", "Nar Ekşisi"],
+            standartMalzemeler: ["Göbek Marul", "Yeşillik & Nane", "Kornişon Turşu", "Domates", "Limon", "Nar Ekşisi"],
             ekstraBaslik: "🧀 Ekstra Lezzetler (İsteğe Bağlı)",
             ekstralar: [
-                { ad: "Ekstra Çıtır Doritos", ekFiyat: 15 },
-                { ad: "Çift Lavaş", ekFiyat: 10 },
-                { ad: "Ekstra Nar Ekşisi (Paket)", ekFiyat: 10 },
-                { ad: "Ekstra Acı Sos (Paket)", ekFiyat: 10 }
+                { ad: "Çift Lavaş", ekFiyat: 15 },
+                { ad: "Ekstra Nar Ekşisi", ekFiyat: 15 },
+                { ad: "Ekstra Acı Sos", ekFiyat: 15 }
             ]
         },
         paketSecenekleri: {
-            tekSecimBaslik: "🌶️ Yoğurma / Acı Tercihi",
+            tekSecimBaslik: "🌶️ Yoğurma / Acı Tercihi (Zorunlu)",
             tekSecimler: [
-                { ad: "Hepsi Normal Acılı", ekFiyat: 0 },
-                { ad: "Hepsi Acısız", ekFiyat: 0 },
+                { ad: "Tamamı Normal Acılı", ekFiyat: 0 },
+                { ad: "Tamamı Acısız", ekFiyat: 0 },
                 { ad: "Yarısı Acılı / Yarısı Acısız", ekFiyat: 0 },
-                { ad: "Hepsi Bol Acılı 🔥", ekFiyat: 0 }
+                { ad: "Tamamı Bol Acılı 🔥", ekFiyat: 0 }
             ],
-            malzemeBaslik: "🥬 Yanında Gönderilecekler",
-            standartMalzemeler: ["Göbek Marul", "Lavaş", "Limon", "Nar Ekşisi", "Acı Sos"],
+            malzemeBaslik: "🥬 Paket Yanında Gönderilecekler",
+            standartMalzemeler: ["Göbek Marul", "Yeşillik Tabağı", "Lavaş", "Limon", "Nar Ekşisi", "Acı Sos"],
             ekstraBaslik: "➕ Ekstra Yan Ürünler",
             ekstralar: [
-                { ad: "Ekstra 5'li Lavaş Paketi", ekFiyat: 25 },
-                { ad: "Büyük Boy Доritos Paketi", ekFiyat: 35 },
-                { ad: "Ekstra Yeşillik Tabağı", ekFiyat: 30 }
+                { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 25 },
+                { ad: "Ekstra Nar Ekşisi Şişe/Paket", ekFiyat: 20 },
+                { ad: "Ekstra Yeşillik & Garnitür", ekFiyat: 35 }
             ]
         }
     };
 
-    // 📋 MENÜ LİSTESİ (Opsiyon çıkmasını istediğin ürüne opsiyonTipi yazman yeterli, istemediğine null yaz)
+    // 📋 GAZİ ÇİĞKÖFTE GERÇEK MENÜ VE FİYAT LİSTESİ
     const MENU_LISTESI = [
         {
-            kategori: "🌯 Dürümler & Porsiyonlar",
+            kategori: "🌯 Dürümler",
             urunler: [
                 {
                     id: 1,
-                    ad: "Mega Çiğköfte Dürüm",
-                    aciklama: "120gr çiğköfte, çift lavaş, bol yeşillik ve soslar",
-                    fiyat: 95,
+                    ad: "Çiğköfte Dürüm (150 gr)",
+                    aciklama: "150 gr çiğköfte, taze yeşillikler, limon ve nar ekşisi",
+                    fiyat: 120,
                     foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
-                    opsiyonTipi: "durumSecenekleri" // Tıklayınca dürüm malzemeleri açılır
+                    opsiyonTipi: "durumSecenekleri"
                 },
                 {
                     id: 2,
-                    ad: "Normal Çiğköfte Dürüm",
-                    aciklama: "90gr çiğköfte, tek lavaş, yeşillik ve soslar",
-                    fiyat: 75,
+                    ad: "Doritoslu Dürüm (150 gr)",
+                    aciklama: "150 gr çiğköfte, çıtır Doritos, yeşillik ve özel soslar",
+                    fiyat: 170,
                     foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 },
                 {
                     id: 3,
-                    ad: "Doritoslu Ultra Dürüm",
-                    aciklama: "Mega dürüm içi çıtır Doritos parçacıklı",
-                    fiyat: 110,
+                    ad: "Duble Dürüm (190 gr)",
+                    aciklama: "190 gr bol çiğköfte, çift lavaş, yeşillik ve soslar",
+                    fiyat: 170,
                     foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
+                    opsiyonTipi: "durumSecenekleri"
+                },
+                {
+                    id: 4,
+                    ad: "Mega Dürüm",
+                    aciklama: "Bol çiğköfte dolgulu özel mega boy dürüm",
+                    fiyat: 170,
+                    foto: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=300&q=80",
+                    opsiyonTipi: "durumSecenekleri"
+                },
+                {
+                    id: 5,
+                    ad: "Zurna Dürüm (230 gr)",
+                    aciklama: "230 gr dev çiğköfte, özel uzun lavaş, bol garnitür",
+                    fiyat: 200,
+                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
+                    opsiyonTipi: "durumSecenekleri"
+                },
+                {
+                    id: 6,
+                    ad: "Duble Doritoslu Dürüm (190 gr)",
+                    aciklama: "190 gr duble çiğköfte, bol çıtır Doritos ve soslar",
+                    fiyat: 230,
+                    foto: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&q=80",
                     opsiyonTipi: "durumSecenekleri"
                 }
             ]
         },
         {
-            kategori: "📦 Kiloluk Aile Paketleri",
+            kategori: "📦 Porsiyon & Kiloluk Paketler",
             urunler: [
                 {
-                    id: 4,
-                    ad: "Yarım Kilo Çiğköfte (500gr)",
-                    aciklama: "10 lavaş, tam göbek marul, limon, soslar",
-                    fiyat: 240,
+                    id: 7,
+                    ad: "Yarım Porsiyon (300 gr)",
+                    aciklama: "300 gr sıkım çiğköfte, lavaş, yeşillik, limon ve soslar",
+                    fiyat: 300,
                     foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
-                    opsiyonTipi: "paketSecenekleri" // Tıklayınca paket seçenekleri açılır
+                    opsiyonTipi: "paketSecenekleri"
                 },
                 {
-                    id: 5,
-                    ad: "1 Kg Aile Paketi (1000gr)",
-                    aciklama: "20 lavaş, 2 göbek marul, bol sos ve yeşillik",
-                    fiyat: 440,
+                    id: 8,
+                    ad: "Tam Porsiyon (600 gr)",
+                    aciklama: "600 gr sıkım çiğköfte, bol lavaş, göbek marul ve soslar",
+                    fiyat: 450,
+                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    opsiyonTipi: "paketSecenekleri"
+                },
+                {
+                    id: 9,
+                    ad: "Aile Boyu Paket (750 gr)",
+                    aciklama: "750 gr çiğköfte, tam garnitür tabağı, bol lavaş ve soslar",
+                    fiyat: 600,
+                    foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
+                    opsiyonTipi: "paketSecenekleri"
+                },
+                {
+                    id: 10,
+                    ad: "1 Kg Çiğköfte (1000 gr)",
+                    aciklama: "1000 gr dev aile paketi, çift marul, bol lavaş ve soslar",
+                    fiyat: 800,
                     foto: "https://images.unsplash.com/photo-1544025162-d76694265947?w=300&q=80",
                     opsiyonTipi: "paketSecenekleri"
                 }
             ]
         },
         {
-            kategori: "🥤 İçecekler",
+            kategori: "🥤 Ayranlar & İçecekler",
             urunler: [
                 {
-                    id: 6,
-                    ad: "Büyük Boy Yayık Ayran",
-                    aciklama: "Bol köpüklü 300ml",
-                    fiyat: 35,
+                    id: 11,
+                    ad: "Büyük Ayran (285 ml)",
+                    aciklama: "SEK Büyük Boy Bardak Ayran",
+                    fiyat: 40,
                     foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
-                    opsiyonTipi: null // İçecek olduğu için soru sormaz, direkt ekler
+                    opsiyonTipi: null
                 },
                 {
-                    id: 7,
-                    ad: "Acılı Şalgam Suyu",
-                    aciklama: "330ml soğuk şişe",
-                    fiyat: 35,
+                    id: 12,
+                    ad: "Küçük Ayran (180 ml)",
+                    aciklama: "SEK Küçük Boy Bardak Ayran",
+                    fiyat: 30,
+                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 13,
+                    ad: "By Ayrancı Acılı Ayran (275 ml)",
+                    aciklama: "Özel şişe acılı yayık ayranı",
+                    fiyat: 50,
+                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 14,
+                    ad: "By Ayrancı Ekşi / Naneli Ayran (275 ml)",
+                    aciklama: "Özel şişe naneli veya ekşi yayık ayranı",
+                    fiyat: 50,
+                    foto: "https://images.unsplash.com/photo-1556881286-fc6915169721?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 15,
+                    ad: "Doğanay Şalgam Suyu (330 ml)",
+                    aciklama: "Soğuk şişe şalgam suyu",
+                    fiyat: 50,
                     foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 16,
+                    ad: "Sırma Limonlu Soda (200 ml)",
+                    aciklama: "C vitaminli limonlu maden suyu",
+                    fiyat: 25,
+                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 17,
+                    ad: "Sırma Sade Soda (200 ml)",
+                    aciklama: "Doğal maden suyu",
+                    fiyat: 20,
+                    foto: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=300&q=80",
+                    opsiyonTipi: null
+                },
+                {
+                    id: 18,
+                    ad: "Su (500 ml)",
+                    aciklama: "Soğuk pet su",
+                    fiyat: 15,
+                    foto: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=300&q=80",
                     opsiyonTipi: null
                 }
             ]
@@ -143,14 +231,15 @@
     ];
 
     /* ==========================================================================
-       ⛔ BURADAN AŞAĞISINA DOKUNMANA GEREK YOK (OTOMATİK ÇALIŞAN SİSTEM KODU)
+       ⛔ OTOMATİK ÇALIŞAN SİSTEM KODU
        ========================================================================== */
     </script>
 
     <style>
         :root {
-            --primary: #d32f2f;
-            --primary-dark: #9a0007;
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --accent: #fbc02d;
             --green: #25D366;
             --bg: #f5f5f7;
             --card: #ffffff;
@@ -174,12 +263,13 @@
             color: white;
             padding: 22px 16px;
             text-align: center;
+            border-bottom: 4px solid var(--accent);
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
         }
-        header h1 { font-size: 22px; font-weight: 800; margin-bottom: 5px; }
-        header p { font-size: 13px; opacity: 0.95; margin-bottom: 8px; }
+        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 5px; letter-spacing: 0.5px; }
+        header p { font-size: 13px; opacity: 0.95; margin-bottom: 10px; font-weight: 600; color: #ffeb3b; }
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -188,7 +278,7 @@
             font-weight: 700;
             padding: 5px 14px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.3);
             color: #fff;
         }
         .closed-banner {
@@ -204,7 +294,10 @@
             display: none;
         }
         .container { max-width: 500px; margin: 0 auto; padding: 16px; }
-        .category-title { font-size: 17px; font-weight: 800; margin: 16px 0 10px; color: #222; }
+        .category-title {
+            font-size: 17px; font-weight: 800; margin: 18px 0 10px; color: #222;
+            border-left: 4px solid var(--primary); padding-left: 8px;
+        }
         .item-card {
             background: var(--card);
             border-radius: 16px;
@@ -212,7 +305,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             cursor: pointer;
         }
         .item-img {
@@ -238,17 +331,16 @@
             font-size: 13px;
             cursor: pointer;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(211,47,47,0.25);
+            box-shadow: 0 2px 6px rgba(198,40,40,0.25);
         }
         .add-btn:active { transform: scale(0.94); }
 
-        /* Alt Sepet Çubuğu */
         .bottom-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
             background: white;
             padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
             display: none;
             justify-content: center;
             z-index: 100;
@@ -261,7 +353,6 @@
             cursor: pointer; font-weight: 700;
         }
 
-        /* Modallar (Malzeme Seçimi ve Sepet) */
         .modal-overlay {
             position: fixed; inset: 0;
             background: rgba(0,0,0,0.6);
@@ -283,7 +374,6 @@
             font-weight: bold; cursor: pointer;
         }
 
-        /* Opsiyon Grupları */
         .opt-group-title {
             font-size: 14px; font-weight: 800; color: #333;
             background: #f2f2f7; padding: 8px 12px; border-radius: 10px;
@@ -300,7 +390,6 @@
         .opt-left { display: flex; align-items: center; }
         .opt-price { font-weight: 700; color: var(--primary); font-size: 13px; }
 
-        /* Sepet İçindeki Ürün Listesi */
         .cart-list { margin-bottom: 16px; max-height: 220px; overflow-y: auto; }
         .cart-item {
             background: #f9f9fb; border-radius: 12px; padding: 10px 12px;
@@ -363,7 +452,6 @@
     <div id="menu-container"></div>
 </div>
 
-<!-- Alt Sepet Barı -->
 <div class="bottom-bar" id="bottom-bar" onclick="openCheckout()">
     <div class="bottom-bar-inner">
         <span id="cart-count">0 Ürün</span>
@@ -371,7 +459,7 @@
     </div>
 </div>
 
-<!-- 1. MODAL: ÜRÜN MALZEME & EKSTRA SEÇİM PENCERESİ -->
+<!-- 1. MODAL: MALZEME SEÇİMİ -->
 <div class="modal-overlay" id="option-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -385,7 +473,7 @@
     </div>
 </div>
 
-<!-- 2. MODAL: SEPET ÖZETİ VE WHATSAPP SİPARİŞ PENCERESİ -->
+<!-- 2. MODAL: SEPET VE SİPARİŞ -->
 <div class="modal-overlay" id="checkout-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -423,7 +511,7 @@
         </div>
 
         <div class="form-group">
-            <label>Genel Sipariş Notu (İsteğe Bağlı)</label>
+            <label>Sipariş Notunuz (İsteğe Bağlı)</label>
             <input type="text" id="cust-note" class="form-control" maxlength="100" placeholder="Örn: Zile basmayın, kapıda arayın">
         </div>
 
@@ -444,7 +532,7 @@
     document.getElementById("iban-owner").textContent = DUKKAN_AYARLARI.ibanAlıcı;
     document.getElementById("iban-text").textContent = DUKKAN_AYARLARI.ibanNo;
 
-    let cart = []; // Her sepet öğesi: { uid, item, qty, secilenAcı, cikarilanlar[], ekstralar[], birimFiyat }
+    let cart = [];
     let activeProduct = null;
 
     function sanitizeInput(str) {
@@ -504,9 +592,9 @@
                 const card = document.createElement("div");
                 card.className = "item-card";
                 card.onclick = () => handleProductClick(item.id);
-                const btnText = item.opsiyonTipi ? "Seç + " : "Ekle +";
+                const btnText = item.opsiyonTipi ? "Seç +" : "Ekle +";
                 card.innerHTML = `
-                    <img src="${item.foto}" class="item-img" alt="${item.ad}" onerror="this.src='https://via.placeholder.com/150?text=Urun'">
+                    <img src="${item.foto}" class="item-img" alt="${item.ad}" onerror="this.src='https://via.placeholder.com/150?text=Gazi'">
                     <div class="item-info">
                         <div class="item-title">${item.ad}</div>
                         <div class="item-desc">${item.aciklama}</div>
@@ -523,20 +611,17 @@
         const product = findProductById(id);
         if (!product) return;
 
-        // Opsiyonu olmayan ürünse (Örn: Ayran) direkt sepete ekle
         if (!product.opsiyonTipi || !OPSIYON_SABLONLARI[product.opsiyonTipi]) {
             addToCartDirect(product);
             return;
         }
 
-        // Opsiyonlu ürünse seçim penceresini aç
         activeProduct = product;
         const sablon = OPSIYON_SABLONLARI[product.opsiyonTipi];
         document.getElementById("opt-modal-title").textContent = product.ad;
 
         let html = "";
 
-        // 1. Zorunlu Tek Seçim (Acı vb.)
         if (sablon.tekSecimler && sablon.tekSecimler.length > 0) {
             html += `<div class="opt-group-title">${sablon.tekSecimBaslik}</div>`;
             sablon.tekSecimler.forEach((sec, idx) => {
@@ -554,7 +639,6 @@
             });
         }
 
-        // 2. Standart İç Malzemeler (İstenmeyeni Çıkar)
         if (sablon.standartMalzemeler && sablon.standartMalzemeler.length > 0) {
             html += `<div class="opt-group-title">${sablon.malzemeBaslik}</div>`;
             sablon.standartMalzemeler.forEach(malz => {
@@ -570,7 +654,6 @@
             });
         }
 
-        // 3. Ekstra Ücretli Malzemeler
         if (sablon.ekstralar && sablon.ekstralar.length > 0) {
             html += `<div class="opt-group-title">${sablon.ekstraBaslik}</div>`;
             sablon.ekstralar.forEach(eks => {
@@ -594,14 +677,11 @@
     function recalcOptionPrice() {
         if (!activeProduct) return;
         let total = activeProduct.fiyat;
-
         const selectedRadio = document.querySelector('input[name="opt-radio"]:checked');
         if (selectedRadio) total += Number(selectedRadio.dataset.price || 0);
-
         document.querySelectorAll('input[name="opt-extra"]:checked').forEach(el => {
             total += Number(el.dataset.price || 0);
         });
-
         document.getElementById("opt-add-btn").textContent = `Sepete Ekle • ${total} TL`;
     }
 
@@ -613,13 +693,11 @@
         const secilenAcı = radioEl ? radioEl.value : "";
         if (radioEl) birimFiyat += Number(radioEl.dataset.price || 0);
 
-        // Çıkarılan malzemeleri bul (Tiki kaldırılanlar)
         const cikarilanlar = [];
         document.querySelectorAll('input[name="opt-ing"]').forEach(el => {
             if (!el.checked) cikarilanlar.push(el.value);
         });
 
-        // Seçilen ekstraları bul
         const ekstralar = [];
         document.querySelectorAll('input[name="opt-extra"]:checked').forEach(el => {
             const p = Number(el.dataset.price || 0);
