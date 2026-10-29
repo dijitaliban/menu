@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- iPhone/Safari'nin IBAN'ı telefon numarası sanıp mavi link yapmasını engeller -->
+    <!-- iPhone/Safari'nin rakamları telefon numarası sanıp mavi link yapmasını engeller -->
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
     <!-- Google ve tüm arama motorlarında çıkmayı %100 engeller -->
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
@@ -19,16 +19,21 @@
 
     /* ==========================================================================
        🛠️ SONER ADMİN PANELİ - GAZİ ÇİĞKÖFTE (MAHMUT USTA 1986)
-       (İleride fiyat, saat veya foto değiştireceğinde sadece burayı düzenle)
+       (İleride fiyat, saat, adres veya insta değiştireceğinde sadece burayı düzenle)
        ========================================================================== */
 
     const DUKKAN_AYARLARI = {
         dukkanAdi: "👑 GAZİ ÇİĞKÖFTE",
         slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş",
-        anaRenk: "#c62828",        // Gazi Çiğköfte Kırmızısı
-        koyuRenk: "#FFFFFF",       
+        anaRenk: "#b91c1c",        // Modern Koyu Bordo / Nar Ekşisi Rengi
+        koyuRenk: "#18181b",       // VIP Koyu Antrasit / Siyah
         whatsappNo: "905362441180", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
-        minSiparisTutari: 150,       
+        minSiparisTutari: 150,
+
+        // 📍 ADRES VE INSTAGRAM BİLGİLERİ
+        adres: "Kalenderhane, Darül Vefa Açık Otoparkı 56-A, 34134 Fatih/İstanbul",
+        haritaUrl: "https://www.google.com/maps/search/?api=1&query=Kalenderhane,+Darül+Vefa+Açık+Otoparkı+56-A,+34134+Fatih/İstanbul",
+        instagramUrl: "https://www.instagram.com/gazicigkofte", // ⚠️ ABİNİN İNSTA LİNKİNİ BURAYA YAZ
 
         // ⏰ ÇALIŞMA SAATLERİ (24 Saat Formatında)
         acilisSaati: "11:00",
@@ -187,7 +192,7 @@
                 {
                     id: 14,
                     ad: "By Ayrancı Ekşi Ayran (275 ml)",
-                    aciklama: "ekşi yayık ayranı",
+                    aciklama: "Özel şişe ekşi yayık ayranı",
                     fiyat: 50,
                     foto: "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260225/10/cc08ab77-32a8-3526-b5f7-fb5c053eb50f/1_org_zoom.jpg",
                     opsiyonTipi: null
@@ -235,13 +240,12 @@
 
     <style>
         :root {
-            --primary: #c62828;
-            --primary-dark: #8e0000;
-            --accent: #fbc02d;
+            --primary: #b91c1c;
+            --primary-dark: #18181b;
             --green: #25D366;
-            --bg: #f5f5f7;
+            --bg: #f4f4f5;
             --card: #ffffff;
-            --text: #1d1d1f;
+            --text: #18181b;
         }
         * {
             box-sizing: border-box;
@@ -259,45 +263,96 @@
             padding-bottom: 115px;
         }
         header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: white;
-            padding: 20px 16px;
+            padding: 22px 16px;
             text-align: center;
-            border-bottom: 4px solid var(--accent);
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
         }
         .verified-pill {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(16, 185, 129, 0.22);
-            border: 1px solid rgba(52, 211, 153, 0.5);
-            color: #a7f3d0;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #f4f4f5;
             font-size: 11px;
-            font-weight: 700;
-            padding: 3px 10px;
+            font-weight: 600;
+            padding: 4px 12px;
             border-radius: 20px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
-        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 4px; letter-spacing: 0.5px; }
-        header p { font-size: 13px; opacity: 0.95; margin-bottom: 10px; font-weight: 600; color: #ffeb3b; }
+        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 4px; letter-spacing: 0.5px; color: #ffffff; }
+        header p { font-size: 13px; margin-bottom: 12px; font-weight: 500; color: #e4e4e7; }
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             font-size: 12px;
             font-weight: 700;
-            padding: 5px 14px;
+            padding: 6px 14px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
         }
+
+        /* Üst Sosyal & Adres Barı */
+        .info-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .insta-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            text-decoration: none;
+            padding: 11px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
+            transition: transform 0.15s;
+        }
+        .insta-btn:active { transform: scale(0.97); }
+        .address-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            background: white;
+            border: 1px solid #e4e4e7;
+            padding: 10px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #27272a;
+            font-size: 12px;
+            line-height: 1.35;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .address-card span.map-tag {
+            background: #f4f4f5;
+            color: var(--primary);
+            font-weight: 800;
+            padding: 6px 10px;
+            border-radius: 10px;
+            white-space: nowrap;
+            font-size: 11px;
+            border: 1px solid #e4e4e7;
+        }
+
         .closed-banner {
-            background: #ffebee;
-            color: #c62828;
-            border: 1.5px solid #ef9a9a;
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1.5px solid #fecaca;
             padding: 12px;
             border-radius: 14px;
             margin-bottom: 14px;
@@ -308,8 +363,8 @@
         }
         .container { max-width: 500px; margin: 0 auto; padding: 16px; }
         .category-title {
-            font-size: 17px; font-weight: 800; margin: 18px 0 10px; color: #222;
-            border-left: 4px solid var(--primary); padding-left: 8px;
+            font-size: 17px; font-weight: 800; margin: 18px 0 10px; color: #18181b;
+            border-left: 4px solid var(--primary); padding-left: 10px;
         }
         .item-card {
             background: var(--card);
@@ -318,7 +373,8 @@
             display: flex;
             align-items: center;
             margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            border: 1px solid #e4e4e7;
             cursor: pointer;
         }
         .item-img {
@@ -327,16 +383,16 @@
             border-radius: 12px;
             object-fit: cover;
             margin-right: 12px;
-            background: #f2f2f7;
+            background: #f4f4f5;
             flex-shrink: 0;
             border: 1px solid #eee;
         }
         .item-info { flex: 1; padding-right: 8px; }
-        .item-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
-        .item-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.3; }
+        .item-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; color: #18181b; }
+        .item-desc { font-size: 12px; color: #71717a; margin-bottom: 6px; line-height: 1.3; }
         .item-price { font-weight: 800; color: var(--primary); font-size: 15px; }
         .add-btn {
-            background: var(--primary);
+            background: var(--primary-dark);
             color: white;
             border: none;
             padding: 9px 14px;
@@ -345,17 +401,18 @@
             font-size: 13px;
             cursor: pointer;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(198,40,40,0.25);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
-        .add-btn:active { transform: scale(0.94); }
+        .add-btn:active { transform: scale(0.94); background: var(--primary); }
 
         .sec-footer {
             text-align: center;
             font-size: 11px;
-            color: #777;
+            color: #71717a;
             margin-top: 24px;
-            padding: 12px;
-            border-top: 1px solid #e5e5ea;
+            padding: 14px 12px;
+            border-top: 1px solid #e4e4e7;
+            line-height: 1.5;
         }
 
         .bottom-bar {
@@ -371,7 +428,8 @@
         .bottom-bar-inner {
             max-width: 500px; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            background: var(--primary); color: white;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
             padding: 14px 20px; border-radius: 16px;
             cursor: pointer; font-weight: 700;
         }
@@ -392,14 +450,14 @@
             margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #eee;
         }
         .close-btn {
-            background: #f2f2f7; border: none;
+            background: #f4f4f5; border: none;
             width: 32px; height: 32px; border-radius: 50%;
             font-weight: bold; cursor: pointer;
         }
 
         .opt-group-title {
-            font-size: 14px; font-weight: 800; color: #333;
-            background: #f2f2f7; padding: 8px 12px; border-radius: 10px;
+            font-size: 14px; font-weight: 800; color: #18181b;
+            background: #f4f4f5; padding: 8px 12px; border-radius: 10px;
             margin: 12px 0 8px;
         }
         .opt-row {
@@ -415,14 +473,14 @@
 
         .cart-list { margin-bottom: 16px; max-height: 220px; overflow-y: auto; }
         .cart-item {
-            background: #f9f9fb; border-radius: 12px; padding: 10px 12px;
+            background: #fafafa; border-radius: 12px; padding: 10px 12px;
             margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid #eee;
+            border: 1px solid #e4e4e7;
         }
-        .cart-item-details { font-size: 12px; color: #555; margin-top: 3px; line-height: 1.35; }
+        .cart-item-details { font-size: 12px; color: #52525b; margin-top: 3px; line-height: 1.35; }
         .qty-controls {
             display: flex; align-items: center; gap: 6px;
-            background: white; padding: 3px 6px; border-radius: 10px; border: 1px solid #ddd;
+            background: white; padding: 3px 6px; border-radius: 10px; border: 1px solid #d4d4d8;
         }
         .qty-btn {
             background: none; border: none; width: 24px; height: 24px;
@@ -430,24 +488,11 @@
         }
 
         .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #444; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #3f3f46; }
         .form-control {
-            width: 100%; padding: 11px; border: 1.5px solid #ddd;
+            width: 100%; padding: 11px; border: 1.5px solid #d4d4d8;
             border-radius: 12px; font-size: 14px;
             -webkit-user-select: text; user-select: text;
-        }
-        .iban-box {
-            background: #fff8e1; border: 1.5px dashed #ffb300;
-            padding: 12px; border-radius: 12px; margin-bottom: 12px; display: none;
-        }
-        .iban-row {
-            display: flex; justify-content: space-between; align-items: center;
-            background: white; padding: 8px 10px; border-radius: 8px;
-            font-family: monospace; font-weight: 700; font-size: 13px; margin-top: 6px;
-        }
-        .copy-btn {
-            background: var(--primary); color: white; border: none;
-            padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer;
         }
         .wp-btn {
             width: 100%; background: var(--green); color: white; border: none;
@@ -465,11 +510,11 @@
         /* Güvenli Bildirim (Toast) */
         .toast {
             visibility: hidden; min-width: 260px; max-width: 90%;
-            background-color: #10b981; color: #fff; text-align: center;
+            background-color: #18181b; color: #fff; text-align: center;
             border-radius: 12px; padding: 12px 16px; position: fixed;
             z-index: 300; bottom: 30px; left: 50%; transform: translateX(-50%);
             font-size: 13px; font-weight: 700;
-            box-shadow: 0 10px 25px rgba(16,185,129,0.4);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         .toast.show { visibility: visible; }
     </style>
@@ -484,11 +529,27 @@
 </header>
 
 <div class="container">
+    <!-- İNSTAGRAM VE ADRES KUTUSU -->
+    <div class="info-strip">
+        <a id="insta-link" href="#" target="_blank" rel="noopener noreferrer" class="insta-btn">
+            📸 Instagram Sayfamızı Takip Edin
+        </a>
+        <a id="map-link" href="#" target="_blank" rel="noopener noreferrer" class="address-card">
+            <div>
+                <strong>📍 İşletme Adresimiz:</strong><br>
+                <span id="address-text"></span>
+            </div>
+            <span class="map-tag">Yol Tarifi ➔</span>
+        </a>
+    </div>
+
     <div class="closed-banner" id="closed-banner"></div>
     <div id="menu-container"></div>
+
     <div class="sec-footer">
+        📍 <strong id="footer-address"></strong><br><br>
         🔒 256-Bit SSL & NFC Güvenlik Protokolü ile Korunmaktadır.<br>
-        Fiyatlar ve ödeme bilgileri sistem tarafından kilitlenmiştir.
+        Fiyatlar ve sipariş bilgileri sistem tarafından kilitlenmiştir.
     </div>
 </div>
 
@@ -535,20 +596,10 @@
 
         <div class="form-group">
             <label>Ödeme Yöntemi</label>
-            <select id="cust-payment" class="form-control" onchange="toggleIban()">
+            <select id="cust-payment" class="form-control">
                 <option value="Kapıda Nakit">💵 Kapıda Nakit</option>
                 <option value="Kapıda Kredi Kartı">💳 Kapıda Kredi Kartı (POS)</option>
-                <option value="IBAN / Havale">🏦 IBAN / Fast ile Ödeme</option>
             </select>
-        </div>
-
-        <div class="iban-box" id="iban-box">
-            <p style="font-size:12px;"><strong>Alıcı:</strong> <span id="iban-owner"></span></p>
-            <div class="iban-row">
-                <span id="iban-text"></span>
-                <button class="copy-btn" onclick="copyIban()" id="copy-btn">Kopyala</button>
-            </div>
-            <p style="font-size:11px; color:#666; margin-top:5px;">🔒 İşlem öncesi banka ekranında alıcı adını teyit ediniz.</p>
         </div>
 
         <div class="form-group">
@@ -562,10 +613,10 @@
     </div>
 </div>
 
-<div id="toast" class="toast">✅ Bilgi Kopyalandı!</div>
+<div id="toast" class="toast">✅ Sepete Eklendi!</div>
 
 <script>
-    // 🔒 DERİN KİLİTLEME (Fiyatların ve IBAN'ın dışarıdan değiştirilmesini %100 engeller)
+    // 🔒 DERİN KİLİTLEME (Fiyatların dışarıdan değiştirilmesini %100 engeller)
     function deepFreeze(obj) {
         Object.freeze(obj);
         Object.getOwnPropertyNames(obj).forEach(prop => {
@@ -580,12 +631,11 @@
     deepFreeze(OPSIYON_SABLONLARI);
     deepFreeze(MENU_LISTESI);
 
-    // Yedek (Fallback) Görsel - İnternet çekmezse veya link bozulursa otomatik çıkar
     const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
         `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
-            <rect width="120" height="120" rx="16" fill="#c62828"/>
+            <rect width="120" height="120" rx="16" fill="#18181b"/>
             <text x="50%" y="48%" dominant-baseline="middle" text-anchor="middle" font-size="32">🌯</text>
-            <text x="50%" y="78%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="13" fill="#ffeb3b">GAZİ</text>
+            <text x="50%" y="78%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="13" fill="#ffffff">GAZİ</text>
         </svg>`
     );
 
@@ -594,8 +644,10 @@
     document.getElementById("page-title").textContent = DUKKAN_AYARLARI.dukkanAdi;
     document.getElementById("header-title").textContent = DUKKAN_AYARLARI.dukkanAdi;
     document.getElementById("header-slogan").textContent = DUKKAN_AYARLARI.slogan;
-    document.getElementById("iban-owner").textContent = DUKKAN_AYARLARI.ibanAlıcı;
-    document.getElementById("iban-text").textContent = DUKKAN_AYARLARI.ibanNo;
+    document.getElementById("address-text").textContent = DUKKAN_AYARLARI.adres;
+    document.getElementById("footer-address").textContent = DUKKAN_AYARLARI.adres;
+    document.getElementById("map-link").href = DUKKAN_AYARLARI.haritaUrl;
+    document.getElementById("insta-link").href = DUKKAN_AYARLARI.instagramUrl;
 
     let cart = [];
     let activeProduct = null;
@@ -703,7 +755,7 @@
         if (sablon.tekSecimler && sablon.tekSecimler.length > 0) {
             html += `<div class="opt-group-title">${sablon.tekSecimBaslik}</div>`;
             sablon.tekSecimler.forEach((sec, idx) => {
-                const checked = idx === 2 ? "checked" : (idx === 0 ? "checked" : "");
+                const checked = idx === 1 ? "checked" : (idx === 0 ? "checked" : "");
                 const fiyatMetin = sec.ekFiyat > 0 ? `+${sec.ekFiyat} TL` : "Ücretsiz";
                 html += `
                     <label class="opt-row">
@@ -765,6 +817,7 @@
 
     function confirmOptionAdd() {
         if (!activeProduct) return;
+        const addedName = activeProduct.ad;
         let birimFiyat = activeProduct.fiyat;
 
         const radioEl = document.querySelector('input[name="opt-radio"]:checked');
@@ -801,7 +854,7 @@
 
         closeOptionModal();
         updateBottomBar();
-        showToast(`✅ ${activeProduct.ad} sepete eklendi!`);
+        showToast(`✅ ${addedName} sepete eklendi!`);
     }
 
     function addToCartDirect(product) {
@@ -898,25 +951,6 @@
 
     function closeCheckout() {
         document.getElementById("checkout-modal").style.display = "none";
-    }
-
-    function toggleIban() {
-        const val = document.getElementById("cust-payment").value;
-        document.getElementById("iban-box").style.display = val.includes("IBAN") ? "block" : "none";
-    }
-
-    function copyIban() {
-        const cleanIban = DUKKAN_AYARLARI.ibanNo.replace(/\s+/g, '').trim();
-        navigator.clipboard.writeText(cleanIban).then(() => {
-            const btn = document.getElementById("copy-btn");
-            btn.textContent = "Kopyalandı ✓";
-            btn.style.background = "#2e7d32";
-            showToast(`✅ IBAN Kopyalandı! Alıcı: ${DUKKAN_AYARLARI.ibanAlıcı}`);
-            setTimeout(() => {
-                btn.textContent = "Kopyala";
-                btn.style.background = DUKKAN_AYARLARI.anaRenk;
-            }, 2500);
-        });
     }
 
     function sendWhatsAppOrder() {
