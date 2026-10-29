@@ -305,40 +305,31 @@
             border: 1px solid rgba(255,255,255,0.15);
         }
 
-        /* Üst Sosyal, Rehber & Adres Barı */
+        /* Üst Sosyal & Adres Barı */
         .info-strip {
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin-bottom: 14px;
         }
-        .quick-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .action-btn {
+        .app-install-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            background: #ffffff;
-            color: #18181b;
-            border: 1.5px solid #e4e4e7;
-            padding: 11px 8px;
-            border-radius: 14px;
-            font-size: 12px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-            transition: transform 0.15s;
-        }
-        .action-btn.primary-action {
+            gap: 8px;
+            width: 100%;
             background: var(--primary-dark);
             color: #ffffff;
-            border-color: var(--primary-dark);
+            border: 1.5px solid #3f3f46;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: transform 0.15s;
         }
-        .action-btn:active { transform: scale(0.96); }
+        .app-install-btn:active { transform: scale(0.97); }
 
         .insta-btn {
             display: flex;
@@ -470,7 +461,7 @@
 
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.65);
             display: none; align-items: flex-end; justify-content: center;
             z-index: 200;
         }
@@ -564,33 +555,56 @@
             margin-top: 14px; cursor: pointer;
         }
 
-        /* iPhone İçin Görsel Baloncuk */
-        .ios-prompt {
-            position: fixed;
-            bottom: 18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 92%;
-            max-width: 420px;
+        /* Detaylı & Görsel Ana Ekrana Ekleme Kartları */
+        .step-box {
+            background: #f4f4f5;
+            border: 1px solid #e4e4e7;
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .step-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #27272a;
+        }
+        .icon-badge {
+            display: inline-block;
             background: #18181b;
             color: #fff;
-            padding: 16px;
-            border-radius: 18px;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-            z-index: 400;
-            display: none;
-            text-align: center;
-            border: 1.5px solid rgba(255,255,255,0.18);
+            padding: 2px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 12px;
         }
-        .ios-prompt-arrow {
-            font-size: 24px;
-            margin-top: 6px;
-            display: block;
+        .bottom-arrow-pointer {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--primary);
             animation: bounce 1.2s infinite;
         }
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
+            50% { transform: translateY(5px); }
         }
 
         /* Güvenli Bildirim (Toast) */
@@ -615,16 +629,11 @@
 </header>
 
 <div class="container">
-    <!-- HIZLI ERİŞİM, REHBER, İNSTAGRAM VE ADRES KUTUSU -->
+    <!-- ANA EKRANA EKLE, İNSTAGRAM VE ADRES KUTUSU -->
     <div class="info-strip">
-        <div class="quick-actions">
-            <button class="action-btn primary-action" onclick="saveToContacts()">
-                📞 Numaramızı Kaydet
-            </button>
-            <button class="action-btn" id="install-app-btn" onclick="installAppDirect()">
-                📲 Ana Ekrana Ekle
-            </button>
-        </div>
+        <button class="app-install-btn" id="install-app-btn" onclick="installAppDirect()">
+            📲 Ana Ekrana Ekle (Tek Tıkla Sipariş)
+        </button>
 
         <a id="insta-link" href="#" target="_blank" rel="noopener noreferrer" class="insta-btn">
             📸 Instagram Sayfamızı Takip Edin
@@ -714,13 +723,16 @@
     </div>
 </div>
 
-<!-- iPhone İçin Tek Adımlık Görsel Kutu -->
-<div class="ios-prompt" id="ios-prompt" onclick="this.style.display='none'">
-    <div style="font-weight:800; font-size:14px; margin-bottom:6px;">📲 Ana Ekrana Eklemek İçin:</div>
-    <div style="font-size:13px; color:#e4e4e7; line-height:1.4;">
-        Aşağıdaki <strong>Paylaş [⬆️]</strong> tuşuna basıp<br><strong>"Ana Ekrana Ekle [➕]"</strong> seçeneğine dokunun.
+<!-- 3. MODAL: ANA EKRANA EKLEME DETAYLI GÖRSEL REHBERİ -->
+<div class="modal-overlay" id="install-guide-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📲 Ana Ekrana Nasıl Eklenir?</h3>
+            <button class="close-btn" onclick="closeInstallGuide()">✕</button>
+        </div>
+        <div id="install-guide-body"></div>
+        <button class="primary-modal-btn" onclick="closeInstallGuide()">Anladım</button>
     </div>
-    <span class="ios-prompt-arrow">⬇️</span>
 </div>
 
 <div id="toast" class="toast">✅ Sepete Eklendi!</div>
@@ -777,9 +789,9 @@
         deferredPrompt = e;
     });
 
-    // 📲 TEK TIKLA DİREKT ANA EKRANA EKLEME FONKSİYONU
+    // 📲 ANA EKRANA EKLEME FONKSİYONU (Kişiler/Rehber İndirmesi Tamamen Kaldırıldı!)
     async function installAppDirect() {
-        // 1. Android / Chrome ise direkt sistemin "Yükle" penceresini açar!
+        // 1. Android / Chrome tek tıkla kurulumu destekliyorsa direkt sistem penceresini açar
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
@@ -790,17 +802,69 @@
             return;
         }
 
-        // 2. iPhone / iPad ise direkt aşağıdaki Paylaş butonunu okla gösterir
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const guideBody = document.getElementById("install-guide-body");
+
         if (isIOS) {
-            const iosBox = document.getElementById("ios-prompt");
-            iosBox.style.display = "block";
-            setTimeout(() => { iosBox.style.display = "none"; }, 6500);
-            return;
+            // iPhone için senin attığın ekran görüntüsündeki alt çubuğa birebir uygun detaylı anlatım
+            guideBody.innerHTML = `
+                <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
+                    <strong>iPhone'da</strong> bir daha QR kod okutmadan menüye tek tıkla girmek için şu <strong>3 basit adımı</strong> yapın:
+                </p>
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        Ekranın en altındaki adres çubuğuna dokunun (veya çubuğun solundaki <span class="icon-badge">≡</span> / <span class="icon-badge">•••</span> simgesine basın).
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        Açılan menüden <span class="icon-badge">⬆️ Paylaş</span> butonuna basın.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        Listeyi biraz aşağı kaydırıp <span class="icon-badge">➕ Ana Ekrana Ekle</span> seçeneğine basın ve sağ üstten <strong>"Ekle"</strong> deyin.
+                    </div>
+                </div>
+                <div class="bottom-arrow-pointer">
+                    ⬇️ İşleme başlamak için en alttaki çubuğa dokunun ⬇️
+                </div>
+            `;
+        } else {
+            // Android'de otomatik pencere çıkmazsa (Kişiler hatası vermeden) direkt Chrome/Samsung adımlarını gösterir
+            guideBody.innerHTML = `
+                <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
+                    Telefonunuzun ana ekranına <strong>Gazi Çiğköfte</strong> uygulamasını eklemek için:
+                </p>
+                <div class="step-box">
+                    <div class="step-num">1</div>
+                    <div class="step-text">
+                        Tarayıcınızın sağ üst (veya sağ alt) köşesindeki <span class="icon-badge">⋮</span> <strong>(Üç Nokta / Menü)</strong> simgesine dokunun.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">2</div>
+                    <div class="step-text">
+                        Açılan listeden <span class="icon-badge">📲 Ana ekrana ekle</span> veya <span class="icon-badge">Uygulamayı yükle</span> seçeneğine basın.
+                    </div>
+                </div>
+                <div class="step-box">
+                    <div class="step-num">3</div>
+                    <div class="step-text">
+                        Çıkan onay kutusunda <strong>"Ekle / Yükle"</strong> butonuna basarak işlemi tamamlayın.
+                    </div>
+                </div>
+            `;
         }
 
-        // 3. Zaten yüklüyse veya desteklenmeyen tarayıcıysa tek tıkla rehber+link kartını indirir
-        saveToContacts();
+        document.getElementById("install-guide-modal").style.display = "flex";
+    }
+
+    function closeInstallGuide() {
+        document.getElementById("install-guide-modal").style.display = "none";
     }
 
     document.documentElement.style.setProperty('--primary', DUKKAN_AYARLARI.anaRenk);
@@ -819,32 +883,6 @@
 
     function sanitizeInput(str) {
         return String(str).replace(/[<>'"`;(){}]/g, "").trim();
-    }
-
-    // 📞 REHBERE KAYDET (vCard - Menü Linki İçinde Gömülü!)
-    function saveToContacts() {
-        const cleanPhone = "+" + DUKKAN_AYARLARI.whatsappNo.replace(/\D/g, '');
-        const menuUrl = window.location.href;
-        const vcard = [
-            "BEGIN:VCARD",
-            "VERSION:3.0",
-            "FN:Gazi Çiğköfte (Mahmut Usta)",
-            "ORG:Gazi Çiğköfte 1986",
-            `TEL;TYPE=CELL,VOICE:${cleanPhone}`,
-            `URL:${menuUrl}`,
-            `ADR;TYPE=WORK:;;${DUKKAN_AYARLARI.adres};;;;`,
-            `NOTE:Hızlı Menü ve Sipariş Linki: ${menuUrl}`,
-            "END:VCARD"
-        ].join("\n");
-
-        const vcardDataUri = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcard);
-        const link = document.createElement("a");
-        link.href = vcardDataUri;
-        link.download = "Gazi_Cigkofte.vcf";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        showToast("📞 Rehber kartı açılıyor, 'Kaydet'e basın!");
     }
 
     // 🧠 MÜŞTERİ BİLGİLERİNİ HATIRLAMA (localStorage)
