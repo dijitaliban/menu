@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- iPhone/Safari'nin rakamları telefon numarası sanıp mavi link yapmasını engeller -->
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <!-- Mobil Uygulama (Web App) Görünümü İçin Meta Etiketleri -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gazi Çiğköfte">
     <!-- Google ve tüm arama motorlarında çıkmayı %100 engeller -->
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
     <!-- Dışarıdan kod enjeksiyonunu, virüsleri ve başka siteye gömülmeyi engeller -->
@@ -24,7 +28,7 @@
 
     const DUKKAN_AYARLARI = {
         dukkanAdi: "👑 GAZİ ÇİĞKÖFTE",
-        slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş Hattı",
+        slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş",
         anaRenk: "#b91c1c",        // Modern Koyu Bordo / Nar Ekşisi Rengi
         koyuRenk: "#18181b",       // VIP Koyu Antrasit / Siyah
         whatsappNo: "905362441180", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
@@ -32,12 +36,12 @@
 
         // 📍 ADRES VE INSTAGRAM BİLGİLERİ
         adres: "Kalenderhane, Darül Vefa Açık Otoparkı 56-A, 34134 Fatih/İstanbul",
-        haritaUrl: "https://maps.app.goo.gl/SmnqqTNmxo5Ugy8H9",
-        instagramUrl: "https://www.instagram.com/gazicigkoftevefa/", // ⚠️ ABİNİN İNSTA LİNKİNİ BURAYA YAZ
+        haritaUrl: "https://www.google.com/maps/search/?api=1&query=Kalenderhane,+Darül+Vefa+Açık+Otoparkı+56-A,+34134+Fatih/İstanbul",
+        instagramUrl: "https://www.instagram.com/gazicigkofte", // ⚠️ ABİNİN İNSTA LİNKİNİ BURAYA YAZ
 
         // ⏰ ÇALIŞMA SAATLERİ (24 Saat Formatında)
         acilisSaati: "11:00",
-        kapanisSaati: "04:00",
+        kapanisSaati: "02:00",
         zorlaKapat: false          // Acil kapatmak gerekirse true yap
     };
 
@@ -299,13 +303,41 @@
             border: 1px solid rgba(255,255,255,0.15);
         }
 
-        /* Üst Sosyal & Adres Barı */
+        /* Üst Sosyal, Rehber & Adres Barı */
         .info-strip {
             display: flex;
             flex-direction: column;
             gap: 8px;
             margin-bottom: 14px;
         }
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: #ffffff;
+            color: #18181b;
+            border: 1.5px solid #e4e4e7;
+            padding: 10px 8px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            transition: transform 0.15s;
+        }
+        .action-btn.primary-action {
+            background: var(--primary-dark);
+            color: #ffffff;
+            border-color: var(--primary-dark);
+        }
+        .action-btn:active { transform: scale(0.96); }
+
         .insta-btn {
             display: flex;
             align-items: center;
@@ -487,6 +519,29 @@
             font-size: 17px; font-weight: bold; color: var(--primary); cursor: pointer;
         }
 
+        .saved-info-bar {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .clear-info-btn {
+            background: none;
+            border: none;
+            color: #b91c1c;
+            font-weight: 800;
+            font-size: 11px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #3f3f46; }
         .form-control {
@@ -505,6 +560,16 @@
             width: 100%; background: var(--primary); color: white; border: none;
             padding: 15px; border-radius: 14px; font-size: 16px; font-weight: 800;
             margin-top: 14px; cursor: pointer;
+        }
+
+        .guide-step {
+            background: #f4f4f5;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.45;
+            color: #27272a;
         }
 
         /* Güvenli Bildirim (Toast) */
@@ -529,8 +594,17 @@
 </header>
 
 <div class="container">
-    <!-- İNSTAGRAM VE ADRES KUTUSU -->
+    <!-- HIZLI ERİŞİM, REHBER, İNSTAGRAM VE ADRES KUTUSU -->
     <div class="info-strip">
+        <div class="quick-actions">
+            <button class="action-btn primary-action" onclick="saveToContacts()">
+                📞 Numaramızı Kaydet
+            </button>
+            <button class="action-btn" onclick="openAppGuide()">
+                📲 Ana Ekrana Ekle
+            </button>
+        </div>
+
         <a id="insta-link" href="#" target="_blank" rel="noopener noreferrer" class="insta-btn">
             📸 Instagram Sayfamızı Takip Edin
         </a>
@@ -584,6 +658,12 @@
 
         <div class="cart-list" id="cart-list-container"></div>
 
+        <!-- Otomatik Hafıza Bildirimi -->
+        <div class="saved-info-bar" id="saved-info-bar">
+            <span>✓ Adres bilgileriniz otomatik dolduruldu</span>
+            <button class="clear-info-btn" onclick="clearSavedCustomerInfo()">Bilgileri Sıfırla</button>
+        </div>
+
         <div class="form-group">
             <label>Adınız Soyadınız *</label>
             <input type="text" id="cust-name" class="form-control" maxlength="50" placeholder="Örn: Ahmet Yılmaz">
@@ -610,6 +690,32 @@
         <button class="wp-btn" id="wp-submit-btn" onclick="sendWhatsAppOrder()">
             📲 WhatsApp ile Siparişi Gönder
         </button>
+    </div>
+</div>
+
+<!-- 3. MODAL: ANA EKRANA EKLEME REHBERİ -->
+<div class="modal-overlay" id="app-guide-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📲 Tek Tıkla Sipariş (Uygulama Modu)</h3>
+            <button class="close-btn" onclick="closeAppGuide()">✕</button>
+        </div>
+        <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
+            Bir daha QR kod okutmadan, telefonunuzun ana ekranından <strong>Gazi Çiğköfte</strong> menüsüne tek tıkla ulaşmak için:
+        </p>
+        <div class="guide-step">
+            <strong>🍎 iPhone (Safari) Kullanıyorsanız:</strong><br>
+            Ekranın en altındaki <strong>Paylaş (Yukarı Ok ⬆️)</strong> simgesine basın ve listeden <strong>"Ana Ekrana Ekle"</strong> seçeneğine tıklayın.
+        </div>
+        <div class="guide-step">
+            <strong>🤖 Android (Chrome) Kullanıyorsanız:</strong><br>
+            Sağ üst köşedeki <strong>Üç Nokta (⋮)</strong> menüsüne basın ve <strong>"Ana ekrana ekle"</strong> veya <strong>"Uygulamayı yükle"</strong> seçeneğine tıklayın.
+        </div>
+        <div class="guide-step">
+            <strong>📞 Rehbere Kaydederek Sipariş:</strong><br>
+            Üstteki <strong>"Numaramızı Kaydet"</strong> butonuna basarsanız numaramız ve <strong>bu sipariş menüsünün linki</strong> telefon rehberinize otomatik kaydedilir.
+        </div>
+        <button class="primary-modal-btn" onclick="closeAppGuide()">Anladım, Teşekkürler</button>
     </div>
 </div>
 
@@ -651,9 +757,78 @@
 
     let cart = [];
     let activeProduct = null;
+    const STORAGE_KEY = "gazi_cigkofte_musteri_v1";
 
     function sanitizeInput(str) {
         return String(str).replace(/[<>'"`;(){}]/g, "").trim();
+    }
+
+    // 📞 REHBERE KAYDET (vCard - Menü Linki İçinde Gömülü!)
+    function saveToContacts() {
+        const cleanPhone = "+" + DUKKAN_AYARLARI.whatsappNo.replace(/\D/g, '');
+        const menuUrl = window.location.href;
+        const vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            "FN:Gazi Çiğköfte (Mahmut Usta)",
+            "ORG:Gazi Çiğköfte 1986",
+            `TEL;TYPE=CELL,VOICE:${cleanPhone}`,
+            `URL:${menuUrl}`,
+            `ADR;TYPE=WORK:;;${DUKKAN_AYARLARI.adres};;;;`,
+            `NOTE:Hızlı Menü ve Sipariş Linki: ${menuUrl}`,
+            "END:VCARD"
+        ].join("\n");
+
+        const vcardDataUri = "data:text/vcard;charset=utf-8," + encodeURIComponent(vcard);
+        const link = document.createElement("a");
+        link.href = vcardDataUri;
+        link.download = "Gazi_Cigkofte.vcf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast("📞 Rehber kartı indirildi! Açıp kaydedin.");
+    }
+
+    // 📲 ANA EKRANA EKLEME REHBERİ
+    function openAppGuide() {
+        document.getElementById("app-guide-modal").style.display = "flex";
+    }
+    function closeAppGuide() {
+        document.getElementById("app-guide-modal").style.display = "none";
+    }
+
+    // 🧠 MÜŞTERİ BİLGİLERİNİ HATIRLAMA (localStorage)
+    function loadCustomerInfo() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return;
+            const data = JSON.parse(raw);
+            if (data.name) document.getElementById("cust-name").value = data.name;
+            if (data.address) document.getElementById("cust-address").value = data.address;
+            if (data.payment) document.getElementById("cust-payment").value = data.payment;
+            if (data.note) document.getElementById("cust-note").value = data.note;
+
+            if (data.name || data.address) {
+                document.getElementById("saved-info-bar").style.display = "flex";
+            }
+        } catch (e) {}
+    }
+
+    function saveCustomerInfo(name, address, payment, note) {
+        try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, address, payment, note }));
+        } catch (e) {}
+    }
+
+    function clearSavedCustomerInfo() {
+        try {
+            localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+        document.getElementById("cust-name").value = "";
+        document.getElementById("cust-address").value = "";
+        document.getElementById("cust-note").value = "";
+        document.getElementById("saved-info-bar").style.display = "none";
+        showToast("🗑️ Kayıtlı adres bilgileriniz temizlendi.");
     }
 
     function isShopOpen() {
@@ -881,7 +1056,7 @@
         const t = document.getElementById("toast");
         t.textContent = msg;
         t.className = "toast show";
-        setTimeout(() => { t.className = "toast"; }, 2200);
+        setTimeout(() => { t.className = "toast"; }, 2400);
     }
 
     function closeOptionModal() {
@@ -946,6 +1121,7 @@
     function openCheckout() {
         updateShopStatusUI();
         renderCartModalList();
+        loadCustomerInfo();
         document.getElementById("checkout-modal").style.display = "flex";
     }
 
@@ -968,6 +1144,9 @@
             alert("Lütfen adınızı ve açık adresinizi yazın.");
             return;
         }
+
+        // Bilgileri sonraki siparişler için telefona kaydet
+        saveCustomerInfo(name, address, payment, note);
 
         let orderLines = [];
         let total = 0;
@@ -1013,6 +1192,7 @@
 
     updateShopStatusUI();
     renderMenu();
+    loadCustomerInfo();
 </script>
 </body>
 </html>
