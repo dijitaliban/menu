@@ -495,7 +495,7 @@
                 acikMi: true,
                 kampanya: "Ayran Hediye!",
                 oneCikan: true,
-                gorsel: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=800&q=80",
+                gorsel: "https://lh3.googleusercontent.com/gps-cs-s/ANWiy9TaOQ7f8RVBSvF-9l_cVE_bvbivwbi1r79K5ueng1eoMZ7Y3Zd80TIkl_ByncFchKSPh1lEj47Zd4Cn9YFGOlv5WskfO7Z3UZiyRm-cp7ng7rUVuqGZYNlEheprJ8jVMrkT7WQ94k10xPsz=s1360-w1360-h1020-rw",
                 aciklama: "Odun ateşinde pişmiş %100 yaprak et döner, özel soslu Hatay usulü dürüm ve tereyağlı İskender lezzetleri.",
                 // 👇 RESTORANIN ÖZEL WHATSAPP SİPARİŞ SAYFASI LİNKİ BURAYA YAZILACAK 👇
                 siparisSayfasiUrl: "https://dijitaliban.github.io/menu/gazicigkofte12/",
