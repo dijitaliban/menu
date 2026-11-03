@@ -3,21 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- iPhone/Safari'nin rakamları telefon numarası sanıp mavi link yapmasını engeller -->
-    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
-    <!-- Mobil Uygulama (Web App) Görünümü İçin Meta Etiketleri -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Gazi Çiğköfte">
-    <meta name="theme-color" content="#18181b">
-    <!-- Google ve tüm arama motorlarında çıkmayı %100 engeller -->
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-    <!-- Dışarıdan kod enjeksiyonunu, virüsleri ve başka siteye gömülmeyi engeller -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https: data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'none'; object-src 'none'; frame-ancestors 'none'; base-uri 'self';">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="referrer" content="no-referrer">
-    <title id="page-title">Gazi Çiğköfte | Güvenli Sipariş</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="noindex, nofollow">
+    <title id="page-title">Gazi Çiğköfte | Online Sipariş</title>
 
     <script>
     // İframe (Sahte Siteye Gömülme) Koruması
@@ -25,25 +13,22 @@
 
     /* ==========================================================================
        🛠️ SONER ADMİN PANELİ - GAZİ ÇİĞKÖFTE (MAHMUT USTA 1986)
-       (İleride fiyat, saat, adres veya insta değiştireceğinde sadece burayı düzenle)
        ========================================================================== */
 
     const DUKKAN_AYARLARI = {
         dukkanAdi: "👑 GAZİ ÇİĞKÖFTE",
         slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş",
-        anaRenk: "#b91c1c",        // Modern Koyu Bordo / Nar Ekşisi Rengi
-        koyuRenk: "#18181b",       // VIP Koyu Antrasit / Siyah
-        whatsappNo: "905362441180", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
-        minSiparisTutari: 150,
-
-        // 📍 ADRES VE INSTAGRAM BİLGİLERİ
-        adres: "Kalenderhane, Darül Vefa Açık Otoparkı 56-A, 34134 Fatih/İstanbul",
-        haritaUrl: "https://www.google.com/maps/search/?api=1&query=Kalenderhane,+Darül+Vefa+Açık+Otoparkı+56-A,+34134+Fatih/İstanbul",
-        instagramUrl: "https://www.instagram.com/gazicigkofte", // ⚠️ ABİNİN İNSTA LİNKİNİ BURAYA YAZ
+        anaRenk: "#c62828",        // Gazi Çiğköfte Kırmızısı
+        koyuRenk: "#8e0000",       
+        whatsappNo: "905349324544", // ✅ GÜNCELLENDİ (+90 534 932 45 44)
+        instagramUrl: "https://www.instagram.com/gazicigkoftevefa?mdxt=ejM4NXF2c3V4dGQy", // ✅ EKLENDİ
+        ibanAlıcı: "Mahmut Usta - Gazi Çiğköfte",
+        ibanNo: "TR00 0000 0000 0000 0000 0000 00", // ⚠️ ESNAFIN IBAN'INI BURAYA YAZABİLİRSİN
+        minSiparisTutari: 0,       
 
         // ⏰ ÇALIŞMA SAATLERİ (24 Saat Formatında)
-        acilisSaati: "04:10",
-        kapanisSaati: "04:08",
+        acilisSaati: "11:30",      // ✅ GÜNCELLENDİ (11.30)
+        kapanisSaati: "23:30",     // ✅ GÜNCELLENDİ (23.30)
         zorlaKapat: false          // Acil kapatmak gerekirse true yap
     };
 
@@ -78,6 +63,7 @@
             ekstraBaslik: "➕ Ekstra Yan Ürünler",
             ekstralar: [
                 { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 25 },
+                { ad: "Büyük Boy Doritos Paketi", ekFiyat: 40 },
                 { ad: "Ekstra Nar Ekşisi", ekFiyat: 20 },
                 { ad: "Ekstra Yeşillik & Garnitür", ekFiyat: 35 }
             ]
@@ -198,7 +184,7 @@
                 {
                     id: 14,
                     ad: "By Ayrancı Ekşi Ayran (275 ml)",
-                    aciklama: "Özel şişe ekşi yayık ayranı",
+                    aciklama: "Ekşi yayık ayranı",
                     fiyat: 50,
                     foto: "https://cdn.dsmcdn.com/ty1832/prod/QC_PREP/20260225/10/cc08ab77-32a8-3526-b5f7-fb5c053eb50f/1_org_zoom.jpg",
                     opsiyonTipi: null
@@ -238,20 +224,17 @@
             ]
         }
     ];
-
-    /* ==========================================================================
-       ⛔ BURADAN AŞAĞISINA HİÇ DOKUNMA (ULTRA GÜVENLİ SİSTEM MOTORU)
-       ========================================================================== */
     </script>
 
     <style>
         :root {
-            --primary: #b91c1c;
-            --primary-dark: #18181b;
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --accent: #fbc02d;
             --green: #25D366;
-            --bg: #f4f4f5;
+            --bg: #f5f5f7;
             --card: #ffffff;
-            --text: #18181b;
+            --text: #1d1d1f;
         }
         * {
             box-sizing: border-box;
@@ -261,7 +244,6 @@
             -webkit-tap-highlight-color: transparent;
             -webkit-user-select: none;
             user-select: none;
-            -webkit-touch-callout: none;
         }
         body {
             background-color: var(--bg);
@@ -269,29 +251,37 @@
             padding-bottom: 115px;
         }
         header {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 22px 16px;
+            padding: 20px 16px;
             text-align: center;
+            border-bottom: 4px solid var(--accent);
             border-bottom-left-radius: 24px;
             border-bottom-right-radius: 24px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.18);
         }
         .verified-pill {
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            background: rgba(255, 255, 255, 0.12);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            color: #f4f4f5;
+            background: rgba(16, 185, 129, 0.22);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            color: #a7f3d0;
             font-size: 11px;
-            font-weight: 600;
-            padding: 4px 12px;
+            font-weight: 700;
+            padding: 3px 10px;
             border-radius: 20px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
-        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 4px; letter-spacing: 0.5px; color: #ffffff; }
-        header p { font-size: 13px; margin-bottom: 12px; font-weight: 500; color: #e4e4e7; }
+        header h1 { font-size: 23px; font-weight: 900; margin-bottom: 4px; letter-spacing: 0.5px; }
+        header p { font-size: 13px; opacity: 0.95; margin-bottom: 10px; font-weight: 600; color: #ffeb3b; }
+        .header-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -300,84 +290,26 @@
             font-weight: 700;
             padding: 6px 14px;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.3);
             color: #fff;
-            border: 1px solid rgba(255,255,255,0.15);
         }
-
-        /* Üst Sosyal & Adres Barı */
-        .info-strip {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-        .app-install-btn {
-            display: flex;
+        .insta-badge {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background: var(--primary-dark);
-            color: #ffffff;
-            border: 1.5px solid #3f3f46;
-            padding: 12px 16px;
-            border-radius: 14px;
-            font-size: 13px;
-            font-weight: 800;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-            transition: transform 0.15s;
-        }
-        .app-install-btn:active { transform: scale(0.97); }
-
-        .insta-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            text-decoration: none;
-            padding: 11px 16px;
-            border-radius: 14px;
-            font-size: 13px;
-            font-weight: 800;
-            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
-            transition: transform 0.15s;
-        }
-        .insta-btn:active { transform: scale(0.97); }
-        .address-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            background: white;
-            border: 1px solid #e4e4e7;
-            padding: 10px 14px;
-            border-radius: 14px;
-            text-decoration: none;
-            color: #27272a;
+            gap: 5px;
             font-size: 12px;
-            line-height: 1.35;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
-        .address-card span.map-tag {
-            background: #f4f4f5;
-            color: var(--primary);
-            font-weight: 800;
-            padding: 6px 10px;
-            border-radius: 10px;
-            white-space: nowrap;
-            font-size: 11px;
-            border: 1px solid #e4e4e7;
-        }
-
         .closed-banner {
-            background: #fef2f2;
-            color: #991b1b;
-            border: 1.5px solid #fecaca;
+            background: #ffebee;
+            color: #c62828;
+            border: 1.5px solid #ef9a9a;
             padding: 12px;
             border-radius: 14px;
             margin-bottom: 14px;
@@ -388,8 +320,8 @@
         }
         .container { max-width: 500px; margin: 0 auto; padding: 16px; }
         .category-title {
-            font-size: 17px; font-weight: 800; margin: 18px 0 10px; color: #18181b;
-            border-left: 4px solid var(--primary); padding-left: 10px;
+            font-size: 17px; font-weight: 800; margin: 18px 0 10px; color: #222;
+            border-left: 4px solid var(--primary); padding-left: 8px;
         }
         .item-card {
             background: var(--card);
@@ -398,8 +330,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            border: 1px solid #e4e4e7;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             cursor: pointer;
         }
         .item-img {
@@ -408,16 +339,16 @@
             border-radius: 12px;
             object-fit: cover;
             margin-right: 12px;
-            background: #f4f4f5;
+            background: #f2f2f7;
             flex-shrink: 0;
             border: 1px solid #eee;
         }
         .item-info { flex: 1; padding-right: 8px; }
-        .item-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; color: #18181b; }
-        .item-desc { font-size: 12px; color: #71717a; margin-bottom: 6px; line-height: 1.3; }
+        .item-title { font-weight: 700; font-size: 15px; margin-bottom: 3px; }
+        .item-desc { font-size: 12px; color: #666; margin-bottom: 6px; line-height: 1.3; }
         .item-price { font-weight: 800; color: var(--primary); font-size: 15px; }
         .add-btn {
-            background: var(--primary-dark);
+            background: var(--primary);
             color: white;
             border: none;
             padding: 9px 14px;
@@ -426,18 +357,17 @@
             font-size: 13px;
             cursor: pointer;
             white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(198,40,40,0.25);
         }
-        .add-btn:active { transform: scale(0.94); background: var(--primary); }
+        .add-btn:active { transform: scale(0.94); }
 
         .sec-footer {
             text-align: center;
             font-size: 11px;
-            color: #71717a;
+            color: #777;
             margin-top: 24px;
-            padding: 14px 12px;
-            border-top: 1px solid #e4e4e7;
-            line-height: 1.5;
+            padding: 12px;
+            border-top: 1px solid #e5e5ea;
         }
 
         .bottom-bar {
@@ -453,15 +383,14 @@
         .bottom-bar-inner {
             max-width: 500px; width: 100%;
             display: flex; justify-content: space-between; align-items: center;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            color: white;
+            background: var(--primary); color: white;
             padding: 14px 20px; border-radius: 16px;
             cursor: pointer; font-weight: 700;
         }
 
         .modal-overlay {
             position: fixed; inset: 0;
-            background: rgba(0,0,0,0.65);
+            background: rgba(0,0,0,0.6);
             display: none; align-items: flex-end; justify-content: center;
             z-index: 200;
         }
@@ -475,14 +404,14 @@
             margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid #eee;
         }
         .close-btn {
-            background: #f4f4f5; border: none;
+            background: #f2f2f7; border: none;
             width: 32px; height: 32px; border-radius: 50%;
             font-weight: bold; cursor: pointer;
         }
 
         .opt-group-title {
-            font-size: 14px; font-weight: 800; color: #18181b;
-            background: #f4f4f5; padding: 8px 12px; border-radius: 10px;
+            font-size: 14px; font-weight: 800; color: #333;
+            background: #f2f2f7; padding: 8px 12px; border-radius: 10px;
             margin: 12px 0 8px;
         }
         .opt-row {
@@ -498,49 +427,39 @@
 
         .cart-list { margin-bottom: 16px; max-height: 220px; overflow-y: auto; }
         .cart-item {
-            background: #fafafa; border-radius: 12px; padding: 10px 12px;
+            background: #f9f9fb; border-radius: 12px; padding: 10px 12px;
             margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
-            border: 1px solid #e4e4e7;
+            border: 1px solid #eee;
         }
-        .cart-item-details { font-size: 12px; color: #52525b; margin-top: 3px; line-height: 1.35; }
+        .cart-item-details { font-size: 12px; color: #555; margin-top: 3px; line-height: 1.35; }
         .qty-controls {
             display: flex; align-items: center; gap: 6px;
-            background: white; padding: 3px 6px; border-radius: 10px; border: 1px solid #d4d4d8;
+            background: white; padding: 3px 6px; border-radius: 10px; border: 1px solid #ddd;
         }
         .qty-btn {
             background: none; border: none; width: 24px; height: 24px;
             font-size: 17px; font-weight: bold; color: var(--primary); cursor: pointer;
         }
 
-        .saved-info-bar {
-            display: none;
-            align-items: center;
-            justify-content: space-between;
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            color: #065f46;
-            padding: 8px 12px;
-            border-radius: 10px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .clear-info-btn {
-            background: none;
-            border: none;
-            color: #b91c1c;
-            font-weight: 800;
-            font-size: 11px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
         .form-group { margin-bottom: 12px; }
-        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #3f3f46; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; color: #444; }
         .form-control {
-            width: 100%; padding: 11px; border: 1.5px solid #d4d4d8;
+            width: 100%; padding: 11px; border: 1.5px solid #ddd;
             border-radius: 12px; font-size: 14px;
             -webkit-user-select: text; user-select: text;
+        }
+        .iban-box {
+            background: #fff8e1; border: 1.5px dashed #ffb300;
+            padding: 12px; border-radius: 12px; margin-bottom: 12px; display: none;
+        }
+        .iban-row {
+            display: flex; justify-content: space-between; align-items: center;
+            background: white; padding: 8px 10px; border-radius: 8px;
+            font-family: monospace; font-weight: 700; font-size: 13px; margin-top: 6px;
+        }
+        .copy-btn {
+            background: var(--primary); color: white; border: none;
+            padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer;
         }
         .wp-btn {
             width: 100%; background: var(--green); color: white; border: none;
@@ -555,144 +474,67 @@
             margin-top: 14px; cursor: pointer;
         }
 
-        /* Detaylı & Görsel Ana Ekrana Ekleme Kartları */
-        .step-box {
-            background: #f4f4f5;
-            border: 1px solid #e4e4e7;
-            border-radius: 14px;
-            padding: 12px 14px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-        }
-        .step-num {
-            background: var(--primary);
-            color: white;
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 13px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .step-text {
-            font-size: 13px;
-            line-height: 1.45;
-            color: #27272a;
-        }
-        .icon-badge {
-            display: inline-block;
-            background: #18181b;
-            color: #fff;
-            padding: 2px 7px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 12px;
-        }
-        .bottom-arrow-pointer {
-            text-align: center;
-            margin-top: 8px;
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--primary);
-            animation: bounce 1.2s infinite;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(5px); }
-        }
-
-        /* Güvenli Bildirim (Toast) */
         .toast {
             visibility: hidden; min-width: 260px; max-width: 90%;
-            background-color: #18181b; color: #fff; text-align: center;
+            background-color: #10b981; color: #fff; text-align: center;
             border-radius: 12px; padding: 12px 16px; position: fixed;
             z-index: 300; bottom: 30px; left: 50%; transform: translateX(-50%);
             font-size: 13px; font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(16,185,129,0.4);
         }
         .toast.show { visibility: visible; }
     </style>
 </head>
-<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
+<body oncontextmenu="return false;">
 
 <header>
-    <div class="verified-pill">✓ Doğrulanmış Güvenli İşletme Menüsü</div>
+    <div class="verified-pill">✓ Esnafeli Doğrulanmış Sipariş Noktası</div>
     <h1 id="header-title"></h1>
     <p id="header-slogan"></p>
-    <div class="status-badge" id="status-badge"></div>
+    <div class="header-badges">
+        <div class="status-badge" id="status-badge">⏰ Kontrol Ediliyor...</div>
+        <a id="insta-btn" href="#" target="_blank" rel="noopener noreferrer" class="insta-badge">📸 Instagram</a>
+    </div>
 </header>
 
 <div class="container">
-    <!-- ANA EKRANA EKLE, İNSTAGRAM VE ADRES KUTUSU -->
-    <div class="info-strip">
-        <button class="app-install-btn" id="install-app-btn" onclick="installAppDirect()">
-            📲 Ana Ekrana Ekle (Tek Tıkla Sipariş)
-        </button>
-
-        <a id="insta-link" href="#" target="_blank" rel="noopener noreferrer" class="insta-btn">
-            📸 Instagram Sayfamızı Takip Edin
-        </a>
-        <a id="map-link" href="#" target="_blank" rel="noopener noreferrer" class="address-card">
-            <div>
-                <strong>📍 İşletme Adresimiz:</strong><br>
-                <span id="address-text"></span>
-            </div>
-            <span class="map-tag">Yol Tarifi ➔</span>
-        </a>
-    </div>
-
     <div class="closed-banner" id="closed-banner"></div>
     <div id="menu-container"></div>
 
     <div class="sec-footer">
-        📍 <strong id="footer-address"></strong><br><br>
-        🔒 256-Bit SSL & NFC Güvenlik Protokolü ile Korunmaktadır.<br>
-        Fiyatlar ve sipariş bilgileri sistem tarafından kilitlenmiştir.
+        🔒 256-Bit SSL & Esnafeli Güvenlik Protokolü ile Korunmaktadır.
     </div>
 </div>
 
-<div class="bottom-bar" id="bottom-bar" onclick="openCheckout()">
-    <div class="bottom-bar-inner">
-        <span id="cart-count">0 Ürün</span>
-        <span>Sepeti Görüntüle & Onayla ➔ <strong id="cart-total">0 TL</strong></span>
+<!-- Alt Sepet Çubuğu -->
+<div class="bottom-bar" id="bottom-bar">
+    <div class="bottom-bar-inner" onclick="openCartModal()">
+        <span id="cart-count-text">🛒 Sepetim (0)</span>
+        <span id="cart-total-text">0 TL • Siparişi Tamamla ➔</span>
     </div>
 </div>
 
-<!-- 1. MODAL: MALZEME SEÇİMİ -->
+<!-- Ürün Opsiyon Seçim Modalı -->
 <div class="modal-overlay" id="option-modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3 id="opt-modal-title">Ürün Seçenekleri</h3>
+            <h3 id="opt-modal-title" style="font-size:17px; font-weight:800;">Ürün Seçenekleri</h3>
             <button class="close-btn" onclick="closeOptionModal()">✕</button>
         </div>
         <div id="opt-modal-body"></div>
-        <button class="primary-modal-btn" id="opt-add-btn" onclick="confirmOptionAdd()">
-            Sepete Ekle
-        </button>
+        <button class="primary-modal-btn" id="opt-confirm-btn" onclick="confirmOptions()">Sepete Ekle</button>
     </div>
 </div>
 
-<!-- 2. MODAL: SEPET VE SİPARİŞ -->
-<div class="modal-overlay" id="checkout-modal">
+<!-- Sepet & Sipariş Tamamlama Modalı -->
+<div class="modal-overlay" id="cart-modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3>🛒 Sepetiniz & Teslimat</h3>
-            <button class="close-btn" onclick="closeCheckout()">✕</button>
+            <h3 style="font-size:18px; font-weight:800;">🛒 Sepetiniz & Teslimat</h3>
+            <button class="close-btn" onclick="closeCartModal()">✕</button>
         </div>
 
         <div class="cart-list" id="cart-list-container"></div>
-
-        <!-- Otomatik Hafıza Bildirimi -->
-        <div class="saved-info-bar" id="saved-info-bar">
-            <span>✓ Adres bilgileriniz otomatik dolduruldu</span>
-            <button class="clear-info-btn" onclick="clearSavedCustomerInfo()">Bilgileri Sıfırla</button>
-        </div>
 
         <div class="form-group">
             <label>Adınız Soyadınız *</label>
@@ -706,10 +548,20 @@
 
         <div class="form-group">
             <label>Ödeme Yöntemi</label>
-            <select id="cust-payment" class="form-control">
+            <select id="cust-payment" class="form-control" onchange="toggleIban()">
                 <option value="Kapıda Nakit">💵 Kapıda Nakit</option>
                 <option value="Kapıda Kredi Kartı">💳 Kapıda Kredi Kartı (POS)</option>
+                <option value="IBAN / Havale">🏦 IBAN / Fast ile Ödeme</option>
             </select>
+        </div>
+
+        <div class="iban-box" id="iban-box">
+            <p style="font-size:12px;"><strong>Alıcı:</strong> <span id="iban-owner"></span></p>
+            <div class="iban-row">
+                <span id="iban-text"></span>
+                <button class="copy-btn" onclick="copyIban()" id="copy-btn">Kopyala</button>
+            </div>
+            <p style="font-size:11px; color:#666; margin-top:5px;">🔒 İşlem öncesi banka ekranında alıcı adını teyit ediniz.</p>
         </div>
 
         <div class="form-group">
@@ -723,421 +575,289 @@
     </div>
 </div>
 
-<!-- 3. MODAL: ANA EKRANA EKLEME DETAYLI GÖRSEL REHBERİ -->
-<div class="modal-overlay" id="install-guide-modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>📲 Ana Ekrana Nasıl Eklenir?</h3>
-            <button class="close-btn" onclick="closeInstallGuide()">✕</button>
-        </div>
-        <div id="install-guide-body"></div>
-        <button class="primary-modal-btn" onclick="closeInstallGuide()">Anladım</button>
-    </div>
-</div>
-
-<div id="toast" class="toast">✅ Sepete Eklendi!</div>
+<div id="toast" class="toast">✅ Bilgi Kopyalandı!</div>
 
 <script>
-    // 🔒 DERİN KİLİTLEME (Fiyatların dışarıdan değiştirilmesini %100 engeller)
-    function deepFreeze(obj) {
-        Object.freeze(obj);
-        Object.getOwnPropertyNames(obj).forEach(prop => {
-            if (obj[prop] !== null && (typeof obj[prop] === "object" || typeof obj[prop] === "function") && !Object.isFrozen(obj[prop])) {
-                deepFreeze(obj[prop]);
-            }
-        });
-        return obj;
-    }
-
-    deepFreeze(DUKKAN_AYARLARI);
-    deepFreeze(OPSIYON_SABLONLARI);
-    deepFreeze(MENU_LISTESI);
-
-    const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
-        `<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
-            <rect width="192" height="192" rx="36" fill="#18181b"/>
-            <text x="50%" y="46%" dominant-baseline="middle" text-anchor="middle" font-size="64">👑</text>
-            <text x="50%" y="78%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-weight="900" font-size="26" fill="#ffffff">GAZİ</text>
-        </svg>`
-    );
-
-    // 📲 OTOMATİK WEB UYGULAMASI (PWA) İKONU VE PAKETİ OLUŞTURUCU
-    (function setupAutoPWA() {
-        const appleIcon = document.createElement("link");
-        appleIcon.rel = "apple-touch-icon";
-        appleIcon.href = FALLBACK_IMG;
-        document.head.appendChild(appleIcon);
-
-        const manifest = {
-            name: DUKKAN_AYARLARI.dukkanAdi,
-            short_name: "Gazi Çiğköfte",
-            start_url: window.location.href,
-            display: "standalone",
-            background_color: "#18181b",
-            theme_color: "#b91c1c",
-            icons: [{ src: FALLBACK_IMG, sizes: "192x192", type: "image/svg+xml" }]
-        };
-        const manifestLink = document.createElement("link");
-        manifestLink.rel = "manifest";
-        manifestLink.href = "data:application/manifest+json;charset=utf-8," + encodeURIComponent(JSON.stringify(manifest));
-        document.head.appendChild(manifestLink);
-    })();
-
-    let deferredPrompt = null;
-    window.addEventListener("beforeinstallprompt", (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-    });
-
-    // 📲 ANA EKRANA EKLEME FONKSİYONU (Kişiler/Rehber İndirmesi Tamamen Kaldırıldı!)
-    async function installAppDirect() {
-        // 1. Android / Chrome tek tıkla kurulumu destekliyorsa direkt sistem penceresini açar
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === "accepted") {
-                showToast("✅ Menü Ana Ekranınıza Eklendi!");
-            }
-            deferredPrompt = null;
-            return;
-        }
-
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        const guideBody = document.getElementById("install-guide-body");
-
-        if (isIOS) {
-            // iPhone için senin attığın ekran görüntüsündeki alt çubuğa birebir uygun detaylı anlatım
-            guideBody.innerHTML = `
-                <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
-                    <strong>iPhone'da</strong> bir daha QR kod okutmadan menüye tek tıkla girmek için şu <strong>3 basit adımı</strong> yapın:
-                </p>
-                <div class="step-box">
-                    <div class="step-num">1</div>
-                    <div class="step-text">
-                        Ekranın en altındaki adres çubuğuna dokunun (veya çubuğun solundaki <span class="icon-badge">≡</span> / <span class="icon-badge">•••</span> simgesine basın).
-                    </div>
-                </div>
-                <div class="step-box">
-                    <div class="step-num">2</div>
-                    <div class="step-text">
-                        Açılan menüden <span class="icon-badge">⬆️ Paylaş</span> butonuna basın.
-                    </div>
-                </div>
-                <div class="step-box">
-                    <div class="step-num">3</div>
-                    <div class="step-text">
-                        Listeyi biraz aşağı kaydırıp <span class="icon-badge">➕ Ana Ekrana Ekle</span> seçeneğine basın ve sağ üstten <strong>"Ekle"</strong> deyin.
-                    </div>
-                </div>
-                <div class="bottom-arrow-pointer">
-                    ⬇️ İşleme başlamak için en alttaki çubuğa dokunun ⬇️
-                </div>
-            `;
-        } else {
-            // Android'de otomatik pencere çıkmazsa (Kişiler hatası vermeden) direkt Chrome/Samsung adımlarını gösterir
-            guideBody.innerHTML = `
-                <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
-                    Telefonunuzun ana ekranına <strong>Gazi Çiğköfte</strong> uygulamasını eklemek için:
-                </p>
-                <div class="step-box">
-                    <div class="step-num">1</div>
-                    <div class="step-text">
-                        Tarayıcınızın sağ üst (veya sağ alt) köşesindeki <span class="icon-badge">⋮</span> <strong>(Üç Nokta / Menü)</strong> simgesine dokunun.
-                    </div>
-                </div>
-                <div class="step-box">
-                    <div class="step-num">2</div>
-                    <div class="step-text">
-                        Açılan listeden <span class="icon-badge">📲 Ana ekrana ekle</span> veya <span class="icon-badge">Uygulamayı yükle</span> seçeneğine basın.
-                    </div>
-                </div>
-                <div class="step-box">
-                    <div class="step-num">3</div>
-                    <div class="step-text">
-                        Çıkan onay kutusunda <strong>"Ekle / Yükle"</strong> butonuna basarak işlemi tamamlayın.
-                    </div>
-                </div>
-            `;
-        }
-
-        document.getElementById("install-guide-modal").style.display = "flex";
-    }
-
-    function closeInstallGuide() {
-        document.getElementById("install-guide-modal").style.display = "none";
-    }
-
-    document.documentElement.style.setProperty('--primary', DUKKAN_AYARLARI.anaRenk);
-    document.documentElement.style.setProperty('--primary-dark', DUKKAN_AYARLARI.koyuRenk);
-    document.getElementById("page-title").textContent = DUKKAN_AYARLARI.dukkanAdi;
-    document.getElementById("header-title").textContent = DUKKAN_AYARLARI.dukkanAdi;
-    document.getElementById("header-slogan").textContent = DUKKAN_AYARLARI.slogan;
-    document.getElementById("address-text").textContent = DUKKAN_AYARLARI.adres;
-    document.getElementById("footer-address").textContent = DUKKAN_AYARLARI.adres;
-    document.getElementById("map-link").href = DUKKAN_AYARLARI.haritaUrl;
-    document.getElementById("insta-link").href = DUKKAN_AYARLARI.instagramUrl;
-
     let cart = [];
-    let activeProduct = null;
-    const STORAGE_KEY = "gazi_cigkofte_musteri_v1";
+    let currentProduct = null;
+    let isShopOpen = true;
 
-    function sanitizeInput(str) {
-        return String(str).replace(/[<>'"`;(){}]/g, "").trim();
+    function initApp() {
+        document.documentElement.style.setProperty('--primary', DUKKAN_AYARLARI.anaRenk);
+        document.documentElement.style.setProperty('--primary-dark', DUKKAN_AYARLARI.koyuRenk);
+        document.getElementById("header-title").textContent = DUKKAN_AYARLARI.dukkanAdi;
+        document.getElementById("header-slogan").textContent = DUKKAN_AYARLARI.slogan;
+        document.getElementById("iban-owner").textContent = DUKKAN_AYARLARI.ibanAlıcı;
+        document.getElementById("iban-text").textContent = DUKKAN_AYARLARI.ibanNo;
+
+        const instaBtn = document.getElementById("insta-btn");
+        if (DUKKAN_AYARLARI.instagramUrl) {
+            instaBtn.href = DUKKAN_AYARLARI.instagramUrl;
+        } else {
+            instaBtn.style.display = "none";
+        }
+
+        checkWorkingHours();
+        renderMenu();
     }
 
-    // 🧠 MÜŞTERİ BİLGİLERİNİ HATIRLAMA (localStorage)
-    function loadCustomerInfo() {
-        try {
-            const raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return;
-            const data = JSON.parse(raw);
-            if (data.name) document.getElementById("cust-name").value = data.name;
-            if (data.address) document.getElementById("cust-address").value = data.address;
-            if (data.payment) document.getElementById("cust-payment").value = data.payment;
-            if (data.note) document.getElementById("cust-note").value = data.note;
-
-            if (data.name || data.address) {
-                document.getElementById("saved-info-bar").style.display = "flex";
-            }
-        } catch (e) {}
-    }
-
-    function saveCustomerInfo(name, address, payment, note) {
-        try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, address, payment, note }));
-        } catch (e) {}
-    }
-
-    function clearSavedCustomerInfo() {
-        try {
-            localStorage.removeItem(STORAGE_KEY);
-        } catch (e) {}
-        document.getElementById("cust-name").value = "";
-        document.getElementById("cust-address").value = "";
-        document.getElementById("cust-note").value = "";
-        document.getElementById("saved-info-bar").style.display = "none";
-        showToast("🗑️ Kayıtlı adres bilgileriniz temizlendi.");
-    }
-
-    function isShopOpen() {
-        if (DUKKAN_AYARLARI.zorlaKapat) return false;
-        const now = new Date();
-        const cur = now.getHours() * 60 + now.getMinutes();
-        const [oH, oM] = DUKKAN_AYARLARI.acilisSaati.split(":").map(Number);
-        const [cH, cM] = DUKKAN_AYARLARI.kapanisSaati.split(":").map(Number);
-        const openM = oH * 60 + oM;
-        const closeM = cH * 60 + cM;
-        return closeM < openM ? (cur >= openM || cur < closeM) : (cur >= openM && cur < closeM);
-    }
-
-    function updateShopStatusUI() {
-        const acik = isShopOpen();
+    function checkWorkingHours() {
         const badge = document.getElementById("status-badge");
         const banner = document.getElementById("closed-banner");
-        const wpBtn = document.getElementById("wp-submit-btn");
 
-        if (acik) {
-            badge.innerHTML = `🟢 Şu An Açık (${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati})`;
-            banner.style.display = "none";
-            wpBtn.classList.remove("disabled");
-            wpBtn.innerHTML = "📲 WhatsApp ile Siparişi Gönder";
+        if (DUKKAN_AYARLARI.zorlaKapat) {
+            isShopOpen = false;
         } else {
-            badge.innerHTML = `🔴 Şu An Kapalı (Açılış: ${DUKKAN_AYARLARI.acilisSaati})`;
-            banner.style.display = "block";
-            banner.innerHTML = `⏰ İşletmemiz şu an servis dışıdır. Çalışma saatlerimiz: <strong>${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati}</strong>`;
-            wpBtn.classList.add("disabled");
-            wpBtn.innerHTML = `🔒 Şu An Kapalıyız (${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati})`;
-        }
-    }
+            const now = new Date();
+            const curMin = now.getHours() * 60 + now.getMinutes();
+            const [openH, openM] = DUKKAN_AYARLARI.acilisSaati.split(":").map(Number);
+            const [closeH, closeM] = DUKKAN_AYARLARI.kapanisSaati.split(":").map(Number);
+            const openMin = openH * 60 + openM;
+            const closeMin = closeH * 60 + closeM;
 
-    function findProductById(id) {
-        for (const g of MENU_LISTESI) {
-            for (const u of g.urunler) {
-                if (u.id === id) return u;
+            if (closeMin > openMin) {
+                isShopOpen = curMin >= openMin && curMin < closeMin;
+            } else {
+                isShopOpen = curMin >= openMin || curMin < closeMin;
             }
         }
-        return null;
+
+        if (isShopOpen) {
+            badge.innerHTML = `🟢 Açık (${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati})`;
+            banner.style.display = "none";
+        } else {
+            badge.innerHTML = `🔴 Şu An Kapalı (${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati})`;
+            banner.style.display = "block";
+            banner.textContent = `⏰ İşletmemiz şu an kapalıdır. Çalışma saatlerimiz: ${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati}`;
+        }
     }
 
     function renderMenu() {
         const container = document.getElementById("menu-container");
         container.innerHTML = "";
-        MENU_LISTESI.forEach(grup => {
-            const catTitle = document.createElement("div");
-            catTitle.className = "category-title";
-            catTitle.textContent = grup.kategori;
-            container.appendChild(catTitle);
 
-            grup.urunler.forEach(item => {
+        MENU_LISTESI.forEach(kat => {
+            const title = document.createElement("div");
+            title.className = "category-title";
+            title.textContent = kat.kategori;
+            container.appendChild(title);
+
+            kat.urunler.forEach(urun => {
                 const card = document.createElement("div");
                 card.className = "item-card";
-                card.onclick = () => handleProductClick(item.id);
-                const btnText = item.opsiyonTipi ? "Seç +" : "Ekle +";
+                card.onclick = () => handleProductClick(urun);
 
-                const imgEl = document.createElement("img");
-                imgEl.src = item.foto;
-                imgEl.className = "item-img";
-                imgEl.alt = item.ad;
-                imgEl.onerror = function() { this.onerror = null; this.src = FALLBACK_IMG; };
-
-                const infoDiv = document.createElement("div");
-                infoDiv.className = "item-info";
-                infoDiv.innerHTML = `
-                    <div class="item-title">${item.ad}</div>
-                    <div class="item-desc">${item.aciklama}</div>
-                    <div class="item-price">${item.fiyat} TL</div>
+                card.innerHTML = `
+                    <img src="${urun.foto}" class="item-img" alt="${urun.ad}" onerror="this.src='https://via.placeholder.com/80?text=Cigkofte'">
+                    <div class="item-info">
+                        <div class="item-title">${urun.ad}</div>
+                        <div class="item-desc">${urun.aciklama}</div>
+                        <div class="item-price">${urun.fiyat} TL</div>
+                    </div>
+                    <button class="add-btn">+ Ekle</button>
                 `;
-
-                const btn = document.createElement("button");
-                btn.className = "add-btn";
-                btn.textContent = btnText;
-
-                card.appendChild(imgEl);
-                card.appendChild(infoDiv);
-                card.appendChild(btn);
                 container.appendChild(card);
             });
         });
     }
 
-    function handleProductClick(id) {
-        const product = findProductById(id);
-        if (!product) return;
-
-        if (!product.opsiyonTipi || !OPSIYON_SABLONLARI[product.opsiyonTipi]) {
-            addToCartDirect(product);
-            return;
-        }
-
-        activeProduct = product;
-        const sablon = OPSIYON_SABLONLARI[product.opsiyonTipi];
-        document.getElementById("opt-modal-title").textContent = product.ad;
-
-        let html = "";
-
-        if (sablon.tekSecimler && sablon.tekSecimler.length > 0) {
-            html += `<div class="opt-group-title">${sablon.tekSecimBaslik}</div>`;
-            sablon.tekSecimler.forEach((sec, idx) => {
-                const checked = idx === 1 ? "checked" : (idx === 0 ? "checked" : "");
-                const fiyatMetin = sec.ekFiyat > 0 ? `+${sec.ekFiyat} TL` : "Ücretsiz";
-                html += `
-                    <label class="opt-row">
-                        <div class="opt-left">
-                            <input type="radio" name="opt-radio" value="${sec.ad}" data-price="${sec.ekFiyat}" ${checked} onchange="recalcOptionPrice()">
-                            <span>${sec.ad}</span>
-                        </div>
-                        <span class="opt-price">${fiyatMetin}</span>
-                    </label>
-                `;
+    function handleProductClick(urun) {
+        if (!urun.opsiyonTipi) {
+            addToCart({
+                urunId: urun.id,
+                ad: urun.ad,
+                birimFiyat: urun.fiyat,
+                detay: "",
+                adet: 1
             });
+            showToast(`✅ ${urun.ad} sepete eklendi!`);
+        } else {
+            openOptionModal(urun);
         }
+    }
 
-        if (sablon.standartMalzemeler && sablon.standartMalzemeler.length > 0) {
-            html += `<div class="opt-group-title">${sablon.malzemeBaslik}</div>`;
-            sablon.standartMalzemeler.forEach(malz => {
-                html += `
-                    <label class="opt-row">
-                        <div class="opt-left">
-                            <input type="checkbox" name="opt-ing" value="${malz}" checked>
-                            <span>${malz}</span>
-                        </div>
-                        <span style="font-size:12px; color:#666;">Standart</span>
-                    </label>
-                `;
-            });
-        }
+    function openOptionModal(urun) {
+        currentProduct = urun;
+        const sablon = OPSIYON_SABLONLARI[urun.opsiyonTipi];
+        document.getElementById("opt-modal-title").textContent = urun.ad;
+        const body = document.getElementById("opt-modal-body");
+        body.innerHTML = "";
 
-        if (sablon.ekstralar && sablon.ekstralar.length > 0) {
-            html += `<div class="opt-group-title">${sablon.ekstraBaslik}</div>`;
-            sablon.ekstralar.forEach(eks => {
-                html += `
-                    <label class="opt-row">
-                        <div class="opt-left">
-                            <input type="checkbox" name="opt-extra" value="${eks.ad}" data-price="${eks.ekFiyat}" onchange="recalcOptionPrice()">
-                            <span>${eks.ad}</span>
-                        </div>
-                        <span class="opt-price">+${eks.ekFiyat} TL</span>
-                    </label>
-                `;
-            });
-        }
+        // 1. Zorunlu Tek Seçim
+        const g1 = document.createElement("div");
+        g1.className = "opt-group-title";
+        g1.textContent = sablon.tekSecimBaslik;
+        body.appendChild(g1);
 
-        document.getElementById("opt-modal-body").innerHTML = html;
-        recalcOptionPrice();
+        sablon.tekSecimler.forEach((sec, idx) => {
+            const row = document.createElement("label");
+            row.className = "opt-row";
+            row.innerHTML = `
+                <div class="opt-left">
+                    <input type="radio" name="tekSecim" value="${sec.ad}" data-price="${sec.ekFiyat}" ${idx === 1 ? "checked" : ""}>
+                    <span>${sec.ad}</span>
+                </div>
+                <span class="opt-price">${sec.ekFiyat > 0 ? "+" + sec.ekFiyat + " TL" : "Ücretsiz"}</span>
+            `;
+            body.appendChild(row);
+        });
+
+        // 2. Standart Malzemeler
+        const g2 = document.createElement("div");
+        g2.className = "opt-group-title";
+        g2.textContent = sablon.malzemeBaslik;
+        body.appendChild(g2);
+
+        sablon.standartMalzemeler.forEach(mal => {
+            const row = document.createElement("label");
+            row.className = "opt-row";
+            row.innerHTML = `
+                <div class="opt-left">
+                    <input type="checkbox" name="standartMal" value="${mal}" checked>
+                    <span>${mal}</span>
+                </div>
+            `;
+            body.appendChild(row);
+        });
+
+        // 3. Ekstralar
+        const g3 = document.createElement("div");
+        g3.className = "opt-group-title";
+        g3.textContent = sablon.ekstraBaslik;
+        body.appendChild(g3);
+
+        sablon.ekstralar.forEach(eks => {
+            const row = document.createElement("label");
+            row.className = "opt-row";
+            row.innerHTML = `
+                <div class="opt-left">
+                    <input type="checkbox" name="ekstraMal" value="${eks.ad}" data-price="${eks.ekFiyat}">
+                    <span>${eks.ad}</span>
+                </div>
+                <span class="opt-price">+${eks.ekFiyat} TL</span>
+            `;
+            body.appendChild(row);
+        });
+
         document.getElementById("option-modal").style.display = "flex";
     }
 
-    function recalcOptionPrice() {
-        if (!activeProduct) return;
-        let total = activeProduct.fiyat;
-        const selectedRadio = document.querySelector('input[name="opt-radio"]:checked');
-        if (selectedRadio) total += Number(selectedRadio.dataset.price || 0);
-        document.querySelectorAll('input[name="opt-extra"]:checked').forEach(el => {
-            total += Number(el.dataset.price || 0);
-        });
-        document.getElementById("opt-add-btn").textContent = `Sepete Ekle • ${total} TL`;
+    function closeOptionModal() {
+        document.getElementById("option-modal").style.display = "none";
+        currentProduct = null;
     }
 
-    function confirmOptionAdd() {
-        if (!activeProduct) return;
-        const addedName = activeProduct.ad;
-        let birimFiyat = activeProduct.fiyat;
+    function confirmOptions() {
+        if (!currentProduct) return;
+        const sablon = OPSIYON_SABLONLARI[currentProduct.opsiyonTipi];
+        let ekTutar = 0;
+        let detayList = [];
 
-        const radioEl = document.querySelector('input[name="opt-radio"]:checked');
-        const secilenAcı = radioEl ? radioEl.value : "";
-        if (radioEl) birimFiyat += Number(radioEl.dataset.price || 0);
+        const seciliRadio = document.querySelector('input[name="tekSecim"]:checked');
+        if (seciliRadio) {
+            detayList.push(seciliRadio.value);
+            ekTutar += Number(seciliRadio.dataset.price || 0);
+        }
 
         const cikarilanlar = [];
-        document.querySelectorAll('input[name="opt-ing"]').forEach(el => {
-            if (!el.checked) cikarilanlar.push(el.value);
+        document.querySelectorAll('input[name="standartMal"]').forEach(cb => {
+            if (!cb.checked) cikarilanlar.push(cb.value + " YOK");
         });
+        if (cikarilanlar.length > 0) detayList.push(cikarilanlar.join(", "));
 
         const ekstralar = [];
-        document.querySelectorAll('input[name="opt-extra"]:checked').forEach(el => {
-            const p = Number(el.dataset.price || 0);
-            birimFiyat += p;
-            ekstralar.push(`${el.value} (+${p}TL)`);
+        document.querySelectorAll('input[name="ekstraMal"]:checked').forEach(cb => {
+            ekstralar.push("+ " + cb.value);
+            ekTutar += Number(cb.dataset.price || 0);
+        });
+        if (ekstralar.length > 0) detayList.push(ekstralar.join(", "));
+
+        addToCart({
+            urunId: currentProduct.id,
+            ad: currentProduct.ad,
+            birimFiyat: currentProduct.fiyat + ekTutar,
+            detay: detayList.join(" | "),
+            adet: 1
         });
 
-        const signature = `${activeProduct.id}|${secilenAcı}|${cikarilanlar.join(",")}|${ekstralar.join(",")}`;
-        const existing = cart.find(c => c.uid === signature);
-        if (existing) {
-            existing.qty += 1;
-        } else {
-            cart.push({
-                uid: signature,
-                item: activeProduct,
-                qty: 1,
-                secilenAcı,
-                cikarilanlar,
-                ekstralar,
-                birimFiyat
-            });
-        }
-
+        showToast(`✅ ${currentProduct.ad} sepete eklendi!`);
         closeOptionModal();
-        updateBottomBar();
-        showToast(`✅ ${addedName} sepete eklendi!`);
     }
 
-    function addToCartDirect(product) {
-        const signature = `${product.id}|||`;
-        const existing = cart.find(c => c.uid === signature);
-        if (existing) {
-            existing.qty += 1;
+    function addToCart(yeniKalem) {
+        const mevcut = cart.find(i => i.urunId === yeniKalem.urunId && i.detay === yeniKalem.detay);
+        if (mevcut) {
+            mevcut.adet += 1;
         } else {
-            cart.push({
-                uid: signature,
-                item: product,
-                qty: 1,
-                secilenAcı: "",
-                cikarilanlar: [],
-                ekstralar: [],
-                birimFiyat: product.fiyat
-            });
+            cart.push(yeniKalem);
         }
-        updateBottomBar();
-        showToast(`✅ ${product.ad} sepete eklendi!`);
+        updateCartBar();
+    }
+
+    function updateCartBar() {
+        const bar = document.getElementById("bottom-bar");
+        const toplamAdet = cart.reduce((s, i) => s + i.adet, 0);
+        const toplamTutar = cart.reduce((s, i) => s + (i.birimFiyat * i.adet), 0);
+
+        if (toplamAdet === 0) {
+            bar.style.display = "none";
+            closeCartModal();
+        } else {
+            bar.style.display = "flex";
+            document.getElementById("cart-count-text").textContent = `🛒 Sepetim (${toplamAdet})`;
+            document.getElementById("cart-total-text").textContent = `${toplamTutar} TL • Siparişi Tamamla ➔`;
+        }
+    }
+
+    function openCartModal() {
+        renderCartItems();
+        document.getElementById("cart-modal").style.display = "flex";
+    }
+
+    function closeCartModal() {
+        document.getElementById("cart-modal").style.display = "none";
+    }
+
+    function renderCartItems() {
+        const list = document.getElementById("cart-list-container");
+        list.innerHTML = "";
+
+        cart.forEach((item, idx) => {
+            const div = document.createElement("div");
+            div.className = "cart-item";
+            div.innerHTML = `
+                <div style="flex:1; padding-right:10px;">
+                    <div style="font-weight:700; font-size:14px;">${item.ad}</div>
+                    ${item.detay ? `<div class="cart-item-details">${item.detay}</div>` : ""}
+                    <div style="font-weight:800; color:var(--primary); font-size:13px; margin-top:4px;">${item.birimFiyat * item.adet} TL</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="changeQty(${idx}, -1)">−</button>
+                    <span style="font-weight:700; font-size:14px;">${item.adet}</span>
+                    <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                </div>
+            `;
+            list.appendChild(div);
+        });
+    }
+
+    function changeQty(idx, delta) {
+        cart[idx].adet += delta;
+        if (cart[idx].adet <= 0) cart.splice(idx, 1);
+        updateCartBar();
+        if (cart.length > 0) renderCartItems();
+    }
+
+    function toggleIban() {
+        const val = document.getElementById("cust-payment").value;
+        document.getElementById("iban-box").style.display = (val === "IBAN / Havale") ? "block" : "none";
+    }
+
+    function copyIban() {
+        const raw = DUKKAN_AYARLARI.ibanNo.replace(/\s+/g, '');
+        navigator.clipboard.writeText(raw).then(() => {
+            showToast("✅ IBAN Kopyalandı! Alıcı: " + DUKKAN_AYARLARI.ibanAlıcı);
+        });
     }
 
     function showToast(msg) {
@@ -1147,140 +867,42 @@
         setTimeout(() => { t.className = "toast"; }, 2400);
     }
 
-    function closeOptionModal() {
-        document.getElementById("option-modal").style.display = "none";
-        activeProduct = null;
-    }
-
-    function changeCartQty(index, delta) {
-        cart[index].qty += delta;
-        if (cart[index].qty <= 0) {
-            cart.splice(index, 1);
-        }
-        renderCartModalList();
-        updateBottomBar();
-    }
-
-    function updateBottomBar() {
-        let totalItems = 0;
-        let totalPrice = 0;
-        cart.forEach(c => {
-            totalItems += c.qty;
-            totalPrice += c.qty * c.birimFiyat;
-        });
-
-        const bar = document.getElementById("bottom-bar");
-        if (totalItems > 0) {
-            bar.style.display = "flex";
-            document.getElementById("cart-count").textContent = `${totalItems} Ürün`;
-            document.getElementById("cart-total").textContent = `${totalPrice} TL`;
-        } else {
-            bar.style.display = "none";
-            closeCheckout();
-        }
-    }
-
-    function renderCartModalList() {
-        const listEl = document.getElementById("cart-list-container");
-        listEl.innerHTML = "";
-        cart.forEach((c, idx) => {
-            let det = [];
-            if (c.secilenAcı) det.push(`🌶️ ${c.secilenAcı}`);
-            if (c.ekstralar.length > 0) det.push(`➕ ${c.ekstralar.join(", ")}`);
-            if (c.cikarilanlar.length > 0) det.push(`❌ ${c.cikarilanlar.join(" Yok, ")} Yok`);
-
-            const div = document.createElement("div");
-            div.className = "cart-item";
-            div.innerHTML = `
-                <div style="flex:1; padding-right:8px;">
-                    <div style="font-weight:700; font-size:14px;">${c.item.ad} <span style="color:var(--primary);">(${c.birimFiyat * c.qty} TL)</span></div>
-                    ${det.length > 0 ? `<div class="cart-item-details">${det.join("<br>")}</div>` : ""}
-                </div>
-                <div class="qty-controls">
-                    <button class="qty-btn" onclick="changeCartQty(${idx}, -1)">−</button>
-                    <span style="font-weight:700; font-size:14px; min-width:16px; text-align:center;">${c.qty}</span>
-                    <button class="qty-btn" onclick="changeCartQty(${idx}, 1)">+</button>
-                </div>
-            `;
-            listEl.appendChild(div);
-        });
-    }
-
-    function openCheckout() {
-        updateShopStatusUI();
-        renderCartModalList();
-        loadCustomerInfo();
-        document.getElementById("checkout-modal").style.display = "flex";
-    }
-
-    function closeCheckout() {
-        document.getElementById("checkout-modal").style.display = "none";
-    }
-
     function sendWhatsAppOrder() {
-        if (!isShopOpen()) {
-            alert(`İşletmemiz şu an kapalıdır. Sipariş saatlerimiz: ${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati}`);
+        if (!isShopOpen) {
+            alert(`İşletmemiz şu an kapalıdır (${DUKKAN_AYARLARI.acilisSaati} - ${DUKKAN_AYARLARI.kapanisSaati}).`);
             return;
         }
 
-        const name = sanitizeInput(document.getElementById("cust-name").value);
-        const address = sanitizeInput(document.getElementById("cust-address").value);
-        const payment = sanitizeInput(document.getElementById("cust-payment").value);
-        const note = sanitizeInput(document.getElementById("cust-note").value);
+        const name = document.getElementById("cust-name").value.trim();
+        const address = document.getElementById("cust-address").value.trim();
+        const payment = document.getElementById("cust-payment").value;
+        const note = document.getElementById("cust-note").value.trim();
 
         if (!name || !address) {
-            alert("Lütfen adınızı ve açık adresinizi yazın.");
+            alert("Lütfen Ad Soyad ve Açık Adres bilgilerinizi eksiksiz giriniz.");
             return;
         }
 
-        // Bilgileri sonraki siparişler için telefona kaydet
-        saveCustomerInfo(name, address, payment, note);
+        const toplamTutar = cart.reduce((s, i) => s + (i.birimFiyat * i.adet), 0);
 
-        let orderLines = [];
-        let total = 0;
-
-        cart.forEach(c => {
-            const sub = c.qty * c.birimFiyat;
-            total += sub;
-            orderLines.push(`▪️ *${c.qty}x ${c.item.ad}* (${sub} TL)`);
-            if (c.secilenAcı) orderLines.push(`   ↳ Tercih: ${c.secilenAcı}`);
-            if (c.ekstralar.length > 0) orderLines.push(`   ↳ Ekstra: ${c.ekstralar.join(", ")}`);
-            if (c.cikarilanlar.length > 0) orderLines.push(`   ↳ Çıkarılacak: *${c.cikarilanlar.join(" YOK, ")} YOK*`);
+        let msg = `👑 *${DUKKAN_AYARLARI.dukkanAdi} - YENİ SİPARİŞ*\n`;
+        msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+        cart.forEach(item => {
+            msg += `▪️ *${item.adet}x ${item.ad}* (${item.birimFiyat * item.adet} TL)\n`;
+            if (item.detay) msg += `   _${item.detay}_\n`;
         });
+        msg += `━━━━━━━━━━━━━━━━━━━━\n`;
+        msg += `💰 *TOPLAM TUTAR:* ${toplamTutar} TL\n`;
+        msg += `💳 *Ödeme:* ${payment}\n`;
+        msg += `👤 *Müşteri:* ${name}\n`;
+        msg += `📍 *Adres:* ${address}\n`;
+        if (note) msg += `📝 *Not:* ${note}\n`;
 
-        if (total < DUKKAN_AYARLARI.minSiparisTutari) {
-            alert(`Minimum paket servis tutarı ${DUKKAN_AYARLARI.minSiparisTutari} TL'dir.`);
-            return;
-        }
-
-        const message = [
-            `🔔 *${DUKKAN_AYARLARI.dukkanAdi} - YENİ SİPARİŞ!*`,
-            "",
-            "*Sipariş Detayı:*",
-            ...orderLines,
-            "",
-            `💰 *Toplam Tutar:* ${total} TL`,
-            `💳 *Ödeme:* ${payment}`,
-            `👤 *Müşteri:* ${name}`,
-            `📍 *Adres:* ${address}`,
-            note ? `📝 *Not:* ${note}` : ""
-        ].filter(Boolean).join("\n");
-
-        const cleanPhone = DUKKAN_AYARLARI.whatsappNo.replace(/\D/g, '');
-        const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
-        window.open(url, "_blank", "noopener,noreferrer");
+        const wpUrl = `https://wa.me/${DUKKAN_AYARLARI.whatsappNo}?text=${encodeURIComponent(msg)}`;
+        window.open(wpUrl, "_blank");
     }
 
-    // F12, Sağ Tık, Ctrl+U, Ctrl+S ve İncele (Inspect) Kısayollarını Engelleme
-    document.onkeydown = function(e) {
-        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) {
-            return false;
-        }
-    };
-
-    updateShopStatusUI();
-    renderMenu();
-    loadCustomerInfo();
+    window.onload = initApp;
 </script>
 </body>
 </html>
