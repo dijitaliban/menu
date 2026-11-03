@@ -22,6 +22,8 @@
         koyuRenk: "#8e0000",       
         whatsappNo: "905349324544", // ✅ GÜNCELLENDİ (+90 534 932 45 44)
         instagramUrl: "https://www.instagram.com/gazicigkoftevefa?mdxt=ejM4NXF2c3V4dGQy", // ✅ EKLENDİ
+        adresMetni: "Vefa Şubesi - Gazi Çiğköfte", // 📍 TAM SOKAK ADRESİNİ BURAYA YAZABİLİRSİN
+        haritaUrl: "https://www.google.com/maps/search/?api=1&query=Gazi+Çiğköfte+Vefa", // 📍 GOOGLE MAPS LİNKİ
         ibanAlıcı: "Mahmut Usta - Gazi Çiğköfte",
         ibanNo: "TR00 0000 0000 0000 0000 0000 00", // ⚠️ ESNAFIN IBAN'INI BURAYA YAZABİLİRSİN
         minSiparisTutari: 0,       
@@ -306,6 +308,25 @@
             text-decoration: none;
             box-shadow: 0 2px 8px rgba(0,0,0,0.25);
         }
+        .map-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: #ffffff;
+            color: #c62828;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        .address-bar {
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.92);
+            font-weight: 600;
+        }
         .closed-banner {
             background: #ffebee;
             color: #c62828;
@@ -368,6 +389,7 @@
             margin-top: 24px;
             padding: 12px;
             border-top: 1px solid #e5e5ea;
+            line-height: 1.5;
         }
 
         .bottom-bar {
@@ -494,7 +516,9 @@
     <div class="header-badges">
         <div class="status-badge" id="status-badge">⏰ Kontrol Ediliyor...</div>
         <a id="insta-btn" href="#" target="_blank" rel="noopener noreferrer" class="insta-badge">📸 Instagram</a>
+        <a id="map-btn" href="#" target="_blank" rel="noopener noreferrer" class="map-badge">📍 Yol Tarifi</a>
     </div>
+    <div class="address-bar" id="header-address"></div>
 </header>
 
 <div class="container">
@@ -502,6 +526,7 @@
     <div id="menu-container"></div>
 
     <div class="sec-footer">
+        <div id="footer-address" style="font-weight:700; color:#444; margin-bottom:4px;"></div>
         🔒 256-Bit SSL & Esnafeli Güvenlik Protokolü ile Korunmaktadır.
     </div>
 </div>
@@ -597,6 +622,18 @@
             instaBtn.style.display = "none";
         }
 
+        const mapBtn = document.getElementById("map-btn");
+        if (DUKKAN_AYARLARI.haritaUrl) {
+            mapBtn.href = DUKKAN_AYARLARI.haritaUrl;
+        } else {
+            mapBtn.style.display = "none";
+        }
+
+        if (DUKKAN_AYARLARI.adresMetni) {
+            document.getElementById("header-address").textContent = "📍 " + DUKKAN_AYARLARI.adresMetni;
+            document.getElementById("footer-address").textContent = "📍 Adres: " + DUKKAN_AYARLARI.adresMetni;
+        }
+
         checkWorkingHours();
         renderMenu();
     }
@@ -683,7 +720,6 @@
         const body = document.getElementById("opt-modal-body");
         body.innerHTML = "";
 
-        // 1. Zorunlu Tek Seçim
         const g1 = document.createElement("div");
         g1.className = "opt-group-title";
         g1.textContent = sablon.tekSecimBaslik;
@@ -702,7 +738,6 @@
             body.appendChild(row);
         });
 
-        // 2. Standart Malzemeler
         const g2 = document.createElement("div");
         g2.className = "opt-group-title";
         g2.textContent = sablon.malzemeBaslik;
@@ -720,7 +755,6 @@
             body.appendChild(row);
         });
 
-        // 3. Ekstralar
         const g3 = document.createElement("div");
         g3.className = "opt-group-title";
         g3.textContent = sablon.ekstraBaslik;
@@ -749,7 +783,6 @@
 
     function confirmOptions() {
         if (!currentProduct) return;
-        const sablon = OPSIYON_SABLONLARI[currentProduct.opsiyonTipi];
         let ekTutar = 0;
         let detayList = [];
 
@@ -766,9 +799,11 @@
         if (cikarilanlar.length > 0) detayList.push(cikarilanlar.join(", "));
 
         const ekstralar = [];
-        document.querySelectorAll('input[name="ekstraMal"]:checked').forEach(cb => {
-            ekstralar.push("+ " + cb.value);
-            ekTutar += Number(cb.dataset.price || 0);
+        document.querySelectorAll('input[name="ekstraMal"]').forEach(cb => {
+            if (cb.checked) {
+                ekstralar.push("+ " + cb.value);
+                ekTutar += Number(cb.dataset.price || 0);
+            }
         });
         if (ekstralar.length > 0) detayList.push(ekstralar.join(", "));
 
