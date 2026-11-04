@@ -33,13 +33,13 @@
         slogan: "Mahmut Usta 1986 • WhatsApp Hızlı Sipariş",
         anaRenk: "#b91c1c",        // Modern Koyu Bordo / Nar Ekşisi Rengi
         koyuRenk: "#18181b",       // VIP Koyu Antrasit / Siyah
-        whatsappNo: "+90 534 932 45 44", // ⚠️ USTA BURAYA ÇİĞKÖFTECİNİN WHATSAPP NUMARASINI YAZ
+        whatsappNo: "+90 534 932 45 44", // ⚠️ ÇİĞKÖFTECİNİN WHATSAPP NUMARASI
         minSiparisTutari: 150,
 
-        // 📍 ADRES VE INSTAGRAM BİLGİLERİ
+        // 📍 ADRES VE İNSTAGRAM BİLGİLERİ
         adres: "Kalenderhane Mahallesi, Cemal Yener Tosyalı Caddesi No: 56-A, Fatih/İstanbul",
         haritaUrl: "https://www.google.com/maps/search/?api=1&query=Kalenderhane,+Darül+Vefa+Açık+Otoparkı+56-A,+34134+Fatih/İstanbul",
-        instagramUrl: "https://www.instagram.com/gazicigkoftevefa?obrf=ejM4NXF2c3V4dGQy", // ⚠️ ABİNİN İNSTA LİNKİNİ BURAYA YAZ
+        instagramUrl: "https://www.instagram.com/gazicigkoftevefa?obrf=ejM4NXF2c3V4dGQy",
 
         // ⏰ ÇALIŞMA SAATLERİ (24 Saat Formatında)
         acilisSaati: "11:30",
@@ -47,7 +47,7 @@
         zorlaKapat: false          // Acil kapatmak gerekirse true yap
     };
 
-    // 🥗 MALZEME VE SOS SEÇENEKLERİ
+    // 🥗 İSTEDİĞİN GİBİ GÜNCELLENEN MALZEME VE SOS SEÇENEKLERİ
     const OPSIYON_SABLONLARI = {
         durumSecenekleri: {
             tekSecimBaslik: "🌶️ Acı & Sos Tercihi (Zorunlu)",
@@ -57,7 +57,20 @@
                 { ad: "Bol Acılı 🔥", ekFiyat: 0 }
             ],
             malzemeBaslik: "🥬 İçindekiler (İstemediğinizi Çıkarın)",
-            standartMalzemeler: ["Göbek Marul", "Yeşillik & Nane", "Kornişon Turşu", "Domates", "Limon", "Nar Ekşisi"],
+            standartMalzemeler: [
+                "Göbek Marul", 
+                "Yeşillik & Nane", 
+                "Roka", 
+                "Maydanoz", 
+                "Domates", 
+                "Salatalık", 
+                "Kornişon Turşu", 
+                "Acı Biber", 
+                "Mor Lahana", 
+                "Mısır", 
+                "Limon", 
+                "Nar Ekşisi"
+            ],
             ekstraBaslik: "🧀 Ekstra Lezzetler (İsteğe Bağlı)",
             ekstralar: [
                 { ad: "Ekstra Çıtır Doritos", ekFiyat: 25 },
@@ -74,7 +87,22 @@
                 { ad: "Tamamı Bol Acılı 🔥", ekFiyat: 0 }
             ],
             malzemeBaslik: "🥬 Paket Yanında Gönderilecekler",
-            standartMalzemeler: ["Göbek Marul", "Yeşillik Tabağı", "Lavaş", "Limon", "Nar Ekşisi", "Acı Sos"],
+            standartMalzemeler: [
+                "Göbek Marul", 
+                "Yeşillik & Nane", 
+                "Roka", 
+                "Maydanoz", 
+                "Domates", 
+                "Salatalık", 
+                "Kornişon Turşu", 
+                "Acı Biber", 
+                "Mor Lahana", 
+                "Mısır", 
+                "Lavaş", 
+                "Limon", 
+                "Nar Ekşisi", 
+                "Acı Sos"
+            ],
             ekstraBaslik: "➕ Ekstra Yan Ürünler",
             ekstralar: [
                 { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 25 },
@@ -305,7 +333,6 @@
             border: 1px solid rgba(255,255,255,0.15);
         }
 
-        /* Üst Sosyal & Adres Barı */
         .info-strip {
             display: flex;
             flex-direction: column;
@@ -555,7 +582,6 @@
             margin-top: 14px; cursor: pointer;
         }
 
-        /* Detaylı & Görsel Ana Ekrana Ekleme Kartları */
         .step-box {
             background: #f4f4f5;
             border: 1px solid #e4e4e7;
@@ -607,7 +633,6 @@
             50% { transform: translateY(5px); }
         }
 
-        /* Güvenli Bildirim (Toast) */
         .toast {
             visibility: hidden; min-width: 260px; max-width: 90%;
             background-color: #18181b; color: #fff; text-align: center;
@@ -629,7 +654,6 @@
 </header>
 
 <div class="container">
-    <!-- ANA EKRANA EKLE, İNSTAGRAM VE ADRES KUTUSU -->
     <div class="info-strip">
         <button class="app-install-btn" id="install-app-btn" onclick="installAppDirect()">
             📲 Ana Ekrana Ekle (Tek Tıkla Sipariş)
@@ -664,7 +688,6 @@
     </div>
 </div>
 
-<!-- 1. MODAL: MALZEME SEÇİMİ -->
 <div class="modal-overlay" id="option-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -678,7 +701,6 @@
     </div>
 </div>
 
-<!-- 2. MODAL: SEPET VE SİPARİŞ -->
 <div class="modal-overlay" id="checkout-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -688,7 +710,6 @@
 
         <div class="cart-list" id="cart-list-container"></div>
 
-        <!-- Otomatik Hafıza Bildirimi -->
         <div class="saved-info-bar" id="saved-info-bar">
             <span>✓ Adres bilgileriniz otomatik dolduruldu</span>
             <button class="clear-info-btn" onclick="clearSavedCustomerInfo()">Bilgileri Sıfırla</button>
@@ -723,7 +744,6 @@
     </div>
 </div>
 
-<!-- 3. MODAL: ANA EKRANA EKLEME DETAYLI GÖRSEL REHBERİ -->
 <div class="modal-overlay" id="install-guide-modal">
     <div class="modal-content">
         <div class="modal-header">
@@ -738,7 +758,6 @@
 <div id="toast" class="toast">✅ Sepete Eklendi!</div>
 
 <script>
-    // 🔒 DERİN KİLİTLEME (Fiyatların dışarıdan değiştirilmesini %100 engeller)
     function deepFreeze(obj) {
         Object.freeze(obj);
         Object.getOwnPropertyNames(obj).forEach(prop => {
@@ -761,7 +780,6 @@
         </svg>`
     );
 
-    // 📲 OTOMATİK WEB UYGULAMASI (PWA) İKONU VE PAKETİ OLUŞTURUCU
     (function setupAutoPWA() {
         const appleIcon = document.createElement("link");
         appleIcon.rel = "apple-touch-icon";
@@ -789,9 +807,7 @@
         deferredPrompt = e;
     });
 
-    // 📲 ANA EKRANA EKLEME FONKSİYONU (Kişiler/Rehber İndirmesi Tamamen Kaldırıldı!)
     async function installAppDirect() {
-        // 1. Android / Chrome tek tıkla kurulumu destekliyorsa direkt sistem penceresini açar
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
@@ -806,7 +822,6 @@
         const guideBody = document.getElementById("install-guide-body");
 
         if (isIOS) {
-            // iPhone için senin attığın ekran görüntüsündeki alt çubuğa birebir uygun detaylı anlatım
             guideBody.innerHTML = `
                 <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
                     <strong>iPhone'da</strong> bir daha QR kod okutmadan menüye tek tıkla girmek için şu <strong>3 basit adımı</strong> yapın:
@@ -834,7 +849,6 @@
                 </div>
             `;
         } else {
-            // Android'de otomatik pencere çıkmazsa (Kişiler hatası vermeden) direkt Chrome/Samsung adımlarını gösterir
             guideBody.innerHTML = `
                 <p style="font-size:13px; color:#52525b; margin-bottom:12px;">
                     Telefonunuzun ana ekranına <strong>Gazi Çiğköfte</strong> uygulamasını eklemek için:
@@ -885,7 +899,6 @@
         return String(str).replace(/[<>'"`;(){}]/g, "").trim();
     }
 
-    // 🧠 MÜŞTERİ BİLGİLERİNİ HATIRLAMA (localStorage)
     function loadCustomerInfo() {
         try {
             const raw = localStorage.getItem(STORAGE_KEY);
@@ -1233,7 +1246,6 @@
             return;
         }
 
-        // Bilgileri sonraki siparişler için telefona kaydet
         saveCustomerInfo(name, address, payment, note);
 
         let orderLines = [];
@@ -1271,7 +1283,6 @@
         window.open(url, "_blank", "noopener,noreferrer");
     }
 
-    // F12, Sağ Tık, Ctrl+U, Ctrl+S ve İncele (Inspect) Kısayollarını Engelleme
     document.onkeydown = function(e) {
         if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 74 || e.keyCode == 67)) || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83))) {
             return false;
