@@ -73,10 +73,10 @@
             ],
             ekstraBaslik: "🧀 Ekstra Lezzetler (İsteğe Bağlı)",
             ekstralar: [
-                { ad: "Ekstra Çıtır Doritos", ekFiyat: 25 },
-                { ad: "Çift Lavaş", ekFiyat: 15 },
-                { ad: "Ekstra Nar Ekşisi Sos", ekFiyat: 15 },
-                { ad: "Ekstra Acı Sos", ekFiyat: 15 }
+                { ad: "Ekstra Çıtır Doritos", ekFiyat: 50 },
+                { ad: "Çift Lavaş", ekFiyat: 0 },
+                { ad: "Ekstra Nar Ekşisi Sos", ekFiyat: 0 },
+                { ad: "Ekstra Acı Sos", ekFiyat: 0 }
             ]
         },
         paketSecenekleri: {
@@ -105,9 +105,9 @@
             ],
             ekstraBaslik: "➕ Ekstra Yan Ürünler",
             ekstralar: [
-                { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 25 },
-                { ad: "Ekstra Nar Ekşisi", ekFiyat: 20 },
-                { ad: "Ekstra Yeşillik & Garnitür", ekFiyat: 35 }
+                { ad: "Ekstra Lavaş Paketi (5'li)", ekFiyat: 0 },
+                { ad: "Ekstra Nar Ekşisi", ekFiyat: 0 },
+                { ad: "Ekstra Yeşillik & Garnitür", ekFiyat: 0 }
             ]
         }
     };
@@ -1063,13 +1063,14 @@
         if (sablon.ekstralar && sablon.ekstralar.length > 0) {
             html += `<div class="opt-group-title">${sablon.ekstraBaslik}</div>`;
             sablon.ekstralar.forEach(eks => {
+                const eksFiyatMetin = eks.ekFiyat > 0 ? `+${eks.ekFiyat} TL` : "Ücretsiz";
                 html += `
                     <label class="opt-row">
                         <div class="opt-left">
                             <input type="checkbox" name="opt-extra" value="${eks.ad}" data-price="${eks.ekFiyat}" onchange="recalcOptionPrice()">
                             <span>${eks.ad}</span>
                         </div>
-                        <span class="opt-price">+${eks.ekFiyat} TL</span>
+                        <span class="opt-price">${eksFiyatMetin}</span>
                     </label>
                 `;
             });
@@ -1109,7 +1110,7 @@
         document.querySelectorAll('input[name="opt-extra"]:checked').forEach(el => {
             const p = Number(el.dataset.price || 0);
             birimFiyat += p;
-            ekstralar.push(`${el.value} (+${p}TL)`);
+            ekstralar.push(p > 0 ? `${el.value} (+${p}TL)` : `${el.value}`);
         });
 
         const signature = `${activeProduct.id}|${secilenAcı}|${cikarilanlar.join(",")}|${ekstralar.join(",")}`;
